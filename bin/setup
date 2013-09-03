@@ -1,0 +1,15 @@
+#!/bin/bash -eu
+
+case "$1" in
+  -v|--version)
+    version="$2"
+esac
+
+# Create additional directories required by DV
+mkdir -p ${OPENSHIFT_HOMEDIR}/.m2
+mkdir -p ${OPENSHIFT_DV_DIR}/{template,standalone/tmp,standalone/deployments,standalone/configuration,standalone/log,standalone/data,modules_ext/org,share,jboss}
+
+# Copy the version specific files up to DV directory
+cp -r ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/configuration/* ${OPENSHIFT_DV_DIR}/standalone/configuration
+cp ${OPENSHIFT_DV_DIR}/versions/${version}/bin/* ${OPENSHIFT_DV_DIR}/bin
+cp -r ${OPENSHIFT_DV_DIR}/versions/${version}/modules/org/* ${OPENSHIFT_DV_DIR}/modules_ext/org

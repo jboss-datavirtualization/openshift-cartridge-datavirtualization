@@ -1,0 +1,31 @@
+#!/bin/bash -eux
+
+case "$1" in
+  -v|--version)
+    version="$2"
+esac
+
+echo "$version" > "$OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_VERSION"
+
+ln -s ${OPENSHIFT_DV_DIR}/standalone/log ${OPENSHIFT_DV_DIR}/logs
+
+shopt -s dotglob
+cp -r ${OPENSHIFT_DV_DIR}/versions/${version}/template/* ${OPENSHIFT_DV_DIR}/template
+mv ${OPENSHIFT_DV_DIR}/versions/${version}/share/* ${OPENSHIFT_DV_DIR}/share
+mv ${OPENSHIFT_DV_DIR}/versions/${version}/jboss/modules ${OPENSHIFT_DV_DIR}/jboss
+mv ${OPENSHIFT_DV_DIR}/versions/${version}/jboss/jboss-modules.jar ${OPENSHIFT_DV_DIR}/jboss
+cp ${OPENSHIFT_DV_DIR}/standalone/configuration/standalone.xml ${OPENSHIFT_DV_DIR}/template/.openshift/config
+cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/vdbmanager-1.0.war ${OPENSHIFT_DV_DIR}/standalone/deployments/vdbmanager.war
+cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/webquery-1.0.war ${OPENSHIFT_DV_DIR}/standalone/deployments/webquery.war
+
+pushd $OPENSHIFT_DV_DIR/template/src/main/webapp
+  jar cvf $OPENSHIFT_DV_DIR/standalone/deployments/ROOT.war ./*
+popd
+
+JBOSS_HOME=${OPENSHIFT_DV_DIR}/jboss
+pushd $OPENSHIFT_DV_DIR > /dev/null
+  ln -s ${JBOSS_HOME}/jboss-modules.jar
+  ln -s ${JBOSS_HOME}/modules
+popd > /dev/null
+
+echo "$JAVA_HOME/bin:$M2_HOME/bin" > $OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_PATH
