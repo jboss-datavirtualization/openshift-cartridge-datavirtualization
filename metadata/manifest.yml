@@ -1,6 +1,6 @@
-Name: datavirtualization
+Name: dv
 Cartridge-Short-Name: DV
-Display-Name: DataVirtualization
+Display-Name: dv
 Description: "RedHat JBoss DataVirtualization"
 Version: '6.0.0'
 License: LGPL
