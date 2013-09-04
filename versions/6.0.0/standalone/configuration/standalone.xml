@@ -94,7 +94,7 @@
                     </security>
                 </datasource>
                 <datasource jndi-name="java:jboss/datasources/DashboardDS" pool-name="DashboardDS" use-java-context="true">
-                    <connection-url>jdbc:h2:file:~/teiid-dashboard-ds;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</connection-url>
+                    <connection-url>jdbc:h2:${jboss.server.data.dir}/teiid-dashboard-ds;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</connection-url>
                     <driver>h2</driver>
                     <security>
                         <user-name>sa</user-name>
@@ -467,13 +467,13 @@
                 <socket-binding name="management-native" interface="management" port="9999"/>
                 <socket-binding name="management-http" interface="management" port="9990"/>
 
-		<socket-binding name="http" port="${env.OPENSHIFT_TEIID_HTTP_PORT}" />
+		<socket-binding name="http" port="${env.OPENSHIFT_DV_HTTP_PORT}" />
 		<socket-binding name="jacorb" interface="unsecure" port="3528" />
 		<socket-binding name="jacorb-ssl" interface="unsecure" port="3529" />
-		<socket-binding name="jgroups-tcp" port="${env.OPENSHIFT_TEIID_CLUSTER_PORT}" />
-		<socket-binding name="messaging" port="${env.OPENSHIFT_TEIID_MESSAGING_PORT}" />
+		<socket-binding name="jgroups-tcp" port="${env.OPENSHIFT_DV_CLUSTER_PORT}" />
+		<socket-binding name="messaging" port="${env.OPENSHIFT_DV_MESSAGING_PORT}" />
 		<socket-binding name="osgi-http" interface="management" port="8090" />
-		<socket-binding name="remoting" port="${env.OPENSHIFT_TEIID_REMOTING_PORT}" />
+		<socket-binding name="remoting" port="${env.OPENSHIFT_DV_REMOTING_PORT}" />
 		<socket-binding name="txn-recovery-environment" port="4712" />
 		<socket-binding name="txn-status-manager" port="4713" />
                 <socket-binding name="teiid-jdbc" port="31000"/>

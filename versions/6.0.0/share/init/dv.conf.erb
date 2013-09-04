@@ -15,7 +15,7 @@ limit nofile 4096 4096
 
 script
 bash << "EOF"
-  su - teiid
+  su - dv
   /opt/dv/jboss/bin/standalone.sh <%= server_opts %> >> /var/log/dv/dv.log 2>&1
 EOF
 end script

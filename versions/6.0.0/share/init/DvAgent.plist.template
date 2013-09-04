@@ -4,6 +4,6 @@
 	        <key>Label</key>
 	        <string>org.teiid</string>
 	        <key>Program</key>
-	        <string>${TEIID_HOME}/jboss/bin/standalone.sh</string>
+	        <string>${DV_HOME}/jboss/bin/standalone.sh</string>
 	</dict>
 </plist>
