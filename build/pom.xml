@@ -61,7 +61,6 @@
 	    </filesets>
 	  </configuration>
       </plugin>
-<!--
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>wagon-maven-plugin</artifactId>
@@ -81,7 +80,6 @@
             </execution>
         </executions>
       </plugin>
--->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>truezip-maven-plugin</artifactId>
@@ -95,10 +93,10 @@
             <phase>process-resources</phase>
             <configuration>
               <fileset>
-                <directory>${project.build.directory}/${dv-archive-name}</directory>
+                <directory>${project.build.directory}/${dv-archive-name}/jboss-eap-6.1</directory>
                 <includes>
-                  <include>jboss-eap-6.1/modules/system/layers/base/**</include>
-                  <include>jboss-eap-6.1/jboss-modules.jar</include>
+                  <include>modules/system/layers/base/**</include>
+                  <include>jboss-modules.jar</include>
                 </includes>
                 <outputDirectory>${project.build.directory}/../../versions/${dv-version-target}/jboss/</outputDirectory>
               </fileset>
