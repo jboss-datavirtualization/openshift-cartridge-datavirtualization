@@ -102,9 +102,24 @@
               </fileset>
             </configuration> 
           </execution>
+          <execution>
+            <id>copy-modules</id>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <phase>process-resources</phase>
+            <configuration>
+              <fileset>
+                <directory>${project.build.directory}/../modules</directory>
+                <includes>
+                  <include>**</include>
+                </includes>
+                <outputDirectory>${project.build.directory}/../../versions/${dv-version-target}/jboss/modules/system/layers/base</outputDirectory>
+              </fileset>
+            </configuration> 
+          </execution>
         </executions>
       </plugin>
-
     </plugins>
   </build>
 
