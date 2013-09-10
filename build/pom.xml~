@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <groupId>org.jboss</groupId>
+  <artifactId>openshift-cartridge-datavirtualization</artifactId>
+  <version>6.0.0</version>
+  <packaging>pom</packaging>
+  <modelVersion>4.0.0</modelVersion>
+  <name>DataVirtualization Cartridge</name>
+  <description>RedHat JBoss DataVirtualization cartridge for OpenShift</description>
+  <properties>
+    <dv-archive-url>http://dev138.mw.lab.eng.bos.redhat.com</dv-archive-url>
+    <dv-archive-path>candidate/dv-6.0.0-ER1/dv-6.0.0.ER1-redhat-1.zip</dv-archive-path>
+    <dv-archive-name>dv-6.0.0.ER1-redhat-1.zip</dv-archive-name>
+    <dv-version-target>6.0.0</dv-version-target>
+  </properties>
+  <scm>
+    <connection>scm:git:git://github.com/mdrillin/openshift-cartridge-datavirtualization.git</connection>
+    <developerConnection>scm:git:git@github.com:mdrillin/openshift-cartridge-datavirtualization.git</developerConnection>
+    <url>http://github.com/mdrillin/openshift-cartridge-datavirtualization</url>
+    <tag>HEAD</tag>
+  </scm>
+  <licenses>
+    <license>
+      <name>GNU Lesser General Public License</name>
+      <url>http://www.gnu.org/licenses/lgpl.html</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>
+  <url>${site.url}</url>
+  <developers>
+    <developer>
+      <name>Mark Drilling</name>
+      <id>mark</id>
+      <email>mdrillin@redhat.com</email>
+      <organization>Red Hat</organization>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>-6</timezone>
+    </developer>
+  </developers>
+
+  <build>
+    <plugins>
+	<plugin>
+	  <artifactId>maven-clean-plugin</artifactId>
+	  <version>2.5</version>
+	  <configuration>
+	    <filesets>
+              <fileset>
+	      <directory>../versions/${dv-version-target}</directory>
+	      <includes>
+	        <include>jboss/**</include>
+	      </includes>
+	      <followSymlinks>false</followSymlinks>
+            </fileset>
+	    </filesets>
+	  </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>wagon-maven-plugin</artifactId>
+        <version>1.0-beta-3</version>
+        <executions>
+            <execution>
+                <id>download-dv-zip</id>
+                <phase>initialize</phase>
+                <goals>
+                    <goal>download-single</goal>
+                </goals>
+                <configuration>
+                    <url>${dv-archive-url}</url>
+                    <fromFile>${dv-archive-path}</fromFile>
+                    <toDir>${project.build.directory}</toDir>
+                </configuration>
+            </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>truezip-maven-plugin</artifactId>
+        <version>1.1</version>
+        <executions>
+          <execution>
+            <id>copy-from-zip</id>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <phase>process-resources</phase>
+            <configuration>
+              <fileset>
+                <directory>${project.build.directory}/${dv-archive-name}</directory>
+                <includes>
+                  <include>jboss-eap-6.1/modules/system/layers/base/**</include>
+                  <include>jboss-eap-6.1/jboss-modules.jar</include>
+                </includes>
+                <outputDirectory>${project.build.directory}/../../versions/${dv-version-target}/jboss/</outputDirectory>
+              </fileset>
+            </configuration> 
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>
+
+
