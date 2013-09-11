@@ -12,4 +12,5 @@ mkdir -p ${OPENSHIFT_DV_DIR}/{template,standalone/tmp,standalone/deployments,sta
 # Copy the version specific files up to DV directory
 cp -r ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/configuration/* ${OPENSHIFT_DV_DIR}/standalone/configuration
 cp ${OPENSHIFT_DV_DIR}/versions/${version}/bin/* ${OPENSHIFT_DV_DIR}/bin
-cp -r ${OPENSHIFT_DV_DIR}/versions/${version}/modules/org/* ${OPENSHIFT_DV_DIR}/modules_ext/org
+#Nothing in modules currently
+#cp -r ${OPENSHIFT_DV_DIR}/versions/${version}/modules/org/* ${OPENSHIFT_DV_DIR}/modules_ext/org
