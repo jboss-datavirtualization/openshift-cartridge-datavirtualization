@@ -15,8 +15,7 @@ mv ${OPENSHIFT_DV_DIR}/versions/${version}/share/* ${OPENSHIFT_DV_DIR}/share
 mv ${OPENSHIFT_DV_DIR}/versions/${version}/jboss/modules ${OPENSHIFT_DV_DIR}/jboss
 mv ${OPENSHIFT_DV_DIR}/versions/${version}/jboss/jboss-modules.jar ${OPENSHIFT_DV_DIR}/jboss
 cp ${OPENSHIFT_DV_DIR}/standalone/configuration/standalone.xml ${OPENSHIFT_DV_DIR}/template/.openshift/config
-cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/vdbmanager-1.0.war ${OPENSHIFT_DV_DIR}/standalone/deployments/vdbmanager.war
-cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/webquery-1.0.war ${OPENSHIFT_DV_DIR}/standalone/deployments/webquery.war
+cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/vdbmanager-1.0.war ${OPENSHIFT_DV_DIR}/standalone/deployments/vdbmgr.war
 cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/teiid-dashboard-distribution-builder-1.0.0-redhat-1-jboss-as7.war ${OPENSHIFT_DV_DIR}/standalone/deployments/teiid-dashboard-distribution-builder-1.0.0-redhat-1-jboss-as7.war
 
 pushd $OPENSHIFT_DV_DIR/template/src/main/webapp
