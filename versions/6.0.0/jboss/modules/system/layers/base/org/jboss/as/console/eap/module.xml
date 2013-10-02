@@ -23,14 +23,12 @@
   -->
 
 <module xmlns="urn:jboss:module:1.1" name="org.jboss.as.console" slot="eap">
-
     <properties>
         <property name="jboss.api" value="private"/>
     </properties>
 
     <resources>
-        <resource-root path="jboss-as-console-1.5.2.Final-redhat-1-resources.jar"/>
-        <!-- Insert resources here -->
+        <resource-root path="hal-console-1.5.5.Final-redhat-2-resources.jar"/>
     </resources>
 
     <dependencies>
