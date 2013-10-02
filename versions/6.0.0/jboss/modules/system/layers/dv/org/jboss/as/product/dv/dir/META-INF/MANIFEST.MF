@@ -1,0 +1,3 @@
+JBoss-Product-Release-Name: Red Hat JBoss Data Virtualization
+JBoss-Product-Release-Version: ${project.version}
+JBoss-Product-Console-Slot: eap

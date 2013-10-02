@@ -12,8 +12,8 @@
   <description>RedHat JBoss DataVirtualization cartridge for OpenShift</description>
   <properties>
     <dv-archive-url>http://dev138.mw.lab.eng.bos.redhat.com</dv-archive-url>
-    <dv-archive-path>candidate/dv-6.0.0-ER1/dv-6.0.0.ER1-redhat-1.zip</dv-archive-path>
-    <dv-archive-name>dv-6.0.0.ER1-redhat-1.zip</dv-archive-name>
+    <dv-archive-path>candidate/dv-6.0.0-ER2/dv-6.0.0.ER2-redhat-1.zip</dv-archive-path>
+    <dv-archive-name>dv-6.0.0.ER2-redhat-1.zip</dv-archive-name>
     <dv-version-target>6.0.0</dv-version-target>
   </properties>
   <scm>
@@ -96,6 +96,7 @@
                 <directory>${project.build.directory}/${dv-archive-name}/jboss-eap-6.1</directory>
                 <includes>
                   <include>modules/system/layers/base/**</include>
+                  <include>modules/system/layers/dv/**</include>
                   <include>jboss-modules.jar</include>
                 </includes>
                 <outputDirectory>${project.build.directory}/../../versions/${dv-version-target}/jboss/</outputDirectory>
