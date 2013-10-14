@@ -49,6 +49,7 @@
 	<plugin>
 	  <artifactId>maven-clean-plugin</artifactId>
 	  <version>2.5</version>
+	  <!-- Removes jboss folder contents from specified version folder -->
 	  <configuration>
 	    <filesets>
               <fileset>
@@ -66,6 +67,7 @@
         <artifactId>wagon-maven-plugin</artifactId>
         <version>1.0-beta-3</version>
         <executions>
+	    <!--Downloads the DV archive into the build target folder -->
             <execution>
                 <id>download-dv-zip</id>
                 <phase>initialize</phase>
@@ -85,6 +87,7 @@
         <artifactId>truezip-maven-plugin</artifactId>
         <version>1.1</version>
         <executions>
+  	  <!--Extracts the modules from zip and puts them in target version jboss location -->
           <execution>
             <id>copy-from-zip</id>
             <goals>
@@ -95,14 +98,14 @@
               <fileset>
                 <directory>${project.build.directory}/${dv-archive-name}/jboss-eap-6.1</directory>
                 <includes>
-                  <include>modules/system/layers/base/**</include>
-                  <include>modules/system/layers/dv/**</include>
+                  <include>modules/system/layers/**</include>
                   <include>jboss-modules.jar</include>
                 </includes>
                 <outputDirectory>${project.build.directory}/../../versions/${dv-version-target}/jboss/</outputDirectory>
               </fileset>
             </configuration> 
           </execution>
+  	  <!--Copies remaining modules (mysql and postgres drivers) from modules folder into target version jboss modules -->
           <execution>
             <id>copy-modules</id>
             <goals>
@@ -116,6 +119,13 @@
                   <include>**</include>
                 </includes>
                 <outputDirectory>${project.build.directory}/../../versions/${dv-version-target}/jboss/modules/system/layers/base</outputDirectory>
+              </fileset>
+              <fileset>
+                <directory>${project.build.directory}/../modules</directory>
+                <includes>
+                  <include>layers.conf</include>
+                </includes>
+                <outputDirectory>${project.build.directory}/../../versions/${dv-version-target}/jboss/modules</outputDirectory>
               </fileset>
             </configuration> 
           </execution>
