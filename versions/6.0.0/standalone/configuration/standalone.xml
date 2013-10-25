@@ -34,8 +34,15 @@
     </system-properties>
 
     <management>
-        <management-interfaces>
-            <native-interface>
+       <security-realms>
+          <security-realm name="ManagementRealm">
+              <authentication>
+                  <properties path="mgmt-users.properties" relative-to="${env.OPENSHIFT_DV_DIR}standalone/configuration"/>
+              </authentication>
+          </security-realm>
+       </security-realms>
+       <management-interfaces>
+            <native-interface security-realm="ManagementRealm">
                 <socket-binding native="management-native"/>
             </native-interface>
             <http-interface>
