@@ -34,6 +34,7 @@
     </system-properties>
 
     <management>
+       <!--
        <security-realms>
           <security-realm name="ManagementRealm">
               <authentication>
@@ -41,6 +42,7 @@
               </authentication>
           </security-realm>
        </security-realms>
+       -->
        <management-interfaces>
             <native-interface>
                 <socket-binding native="management-native"/>
