@@ -28,7 +28,7 @@
     </properties>
 
     <resources>
-        <resource-root path="jbossjts-jacorb-4.17.4.Final-redhat-2.jar"/>
+        <resource-root path="jbossjts-jacorb-4.17.7.Final-redhat-4.jar"/>
         <!-- Insert resources here -->
     </resources>
 

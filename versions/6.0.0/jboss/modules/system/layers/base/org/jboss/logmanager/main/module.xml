@@ -24,7 +24,7 @@
 
 <module xmlns="urn:jboss:module:1.1" name="org.jboss.logmanager">
     <resources>
-        <resource-root path="jboss-logmanager-1.4.0.Final-redhat-1.jar"/>
+        <resource-root path="jboss-logmanager-1.4.3.Final-redhat-1.jar"/>
         <!-- Insert resources here -->
     </resources>
 

@@ -28,7 +28,7 @@
     </properties>
 
     <resources>
-        <resource-root path="jboss-as-jsf-injection-7.2.0.Final-redhat-8.jar"/>
+        <resource-root path="jboss-as-jsf-injection-7.2.1.Final-redhat-10.jar"/>
         <!-- Insert resources here -->
     </resources>
 

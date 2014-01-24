@@ -22,7 +22,7 @@
   -->
 <module xmlns="urn:jboss:module:1.2" name="org.modeshape.sequencer.xsd">
     <resources>
-        <resource-root path="modeshape-sequencer-xsd-3.3.5.GA-redhat-1.jar" />
+        <resource-root path="modeshape-sequencer-xsd-3.3.6.GA-redhat-4.jar" />
         <resource-root path="xsd-2.2.3.jar" />
         <resource-root path="common-2.4.0.jar" />
         <resource-root path="ecore-2.4.2.jar" />

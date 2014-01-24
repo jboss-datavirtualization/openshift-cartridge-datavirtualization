@@ -28,9 +28,9 @@
     </properties>
 
     <resources>
-        <resource-root path="jboss-as-web-7.2.0.Final-redhat-8.jar"/>
+        <resource-root path="jboss-as-web-7.2.1.Final-redhat-10.jar"/>
         <resource-root path="ecj-3.7.2-redhat-1.jar"/>
-        <resource-root path="jbossweb-7.2.0.Final-redhat-1.jar"/>
+        <resource-root path="jbossweb-7.2.2.Final-redhat-1.jar"/>
         <!-- Insert resources here -->
     </resources>
 

@@ -28,7 +28,7 @@
     </properties>
 
     <resources>
-        <resource-root path="aesh-0.33.3-redhat-1.jar"/>
+        <resource-root path="aesh-0.33.7.redhat-2.jar"/>
         <!-- Insert resources here -->
     </resources>
 

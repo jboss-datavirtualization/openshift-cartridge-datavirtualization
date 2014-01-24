@@ -28,7 +28,7 @@
     </properties>
 
     <resources>
-        <resource-root path="jcip-annotations-1.0-redhat-3.jar"/>
+        <resource-root path="jcip-annotations-1.0-redhat-4.jar"/>
         <!-- Insert resources here -->
     </resources>
 

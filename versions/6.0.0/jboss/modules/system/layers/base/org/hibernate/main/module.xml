@@ -25,9 +25,9 @@
 <!-- Represents the Hibernate 4.0.x module-->
 <module xmlns="urn:jboss:module:1.1" name="org.hibernate">
     <resources>
-        <resource-root path="hibernate-core-4.2.0.Final-redhat-1.jar"/>
-        <resource-root path="hibernate-entitymanager-4.2.0.Final-redhat-1.jar"/>
-        <resource-root path="hibernate-infinispan-4.2.0.Final-redhat-1.jar"/>
+        <resource-root path="hibernate-core-4.2.0.SP1-redhat-1.jar"/>
+        <resource-root path="hibernate-entitymanager-4.2.0.SP1-redhat-1.jar"/>
+        <resource-root path="hibernate-infinispan-4.2.0.SP1-redhat-1.jar"/>
         <!-- Insert resources here -->
     </resources>
 

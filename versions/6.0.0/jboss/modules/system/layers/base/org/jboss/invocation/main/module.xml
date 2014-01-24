@@ -29,7 +29,7 @@
     </properties>
 
     <resources>
-        <resource-root path="jboss-invocation-1.1.1.Final-redhat-2.jar"/>
+        <resource-root path="jboss-invocation-1.1.2.Final-redhat-1.jar"/>
         <!-- Insert resources here -->
     </resources>
 

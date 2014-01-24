@@ -22,7 +22,7 @@
   -->
 <module xmlns="urn:jboss:module:1.2" name="org.modeshape.connector.git">
     <resources>
-        <resource-root path="modeshape-connector-git-3.3.5.GA-redhat-1.jar" />
+        <resource-root path="modeshape-connector-git-3.3.6.GA-redhat-4.jar" />
         <resource-root path="org.eclipse.jgit-2.1.0.201209190230-r.jar" />
         <resource-root path="jsch-0.1.48-redhat-2.jar" />
     </resources>

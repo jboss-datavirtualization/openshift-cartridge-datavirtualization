@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.1" name="org.jboss.datavirt.commons.datavirt-commons-auth">
+  <resources>
+    <resource-root path="datavirt-commons-auth-1.0.0.jar" />
+  </resources>
+
+  <dependencies>
+      <module name="javax.api"/>
+      <module name="org.picketbox"/>
+      <module name="org.picketlink"/>
+      <module name="javax.security.jacc.api"/>
+      <module name="org.jboss.as.security"/>
+      <module name="org.apache.commons.codec"/>
+      <module name="javax.servlet.api"/>
+  </dependencies>
+</module>

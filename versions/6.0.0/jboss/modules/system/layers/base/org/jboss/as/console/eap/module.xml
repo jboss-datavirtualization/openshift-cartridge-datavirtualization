@@ -29,7 +29,7 @@
     </properties>
 
     <resources>
-        <resource-root path="jboss-as-console-1.5.2.Final-redhat-1-resources.jar"/>
+        <resource-root path="release-stream-1.5.7.Final-redhat-1-resources.jar"/>
         <!-- Insert resources here -->
     </resources>
 

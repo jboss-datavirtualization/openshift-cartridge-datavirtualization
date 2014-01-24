@@ -345,6 +345,19 @@
                         </login-module>
                     </authentication>
                 </security-domain>
+                <security-domain name="datavirt-idp" cache-type="default">
+                    <authentication>
+                        <login-module code="UsersRoles" flag="required">
+                            <module-option name="usersProperties" value="${env.OPENSHIFT_DV_DIR}standalone/configuration/datavirt-idp-users.properties"/>
+                            <module-option name="rolesProperties" value="${env.OPENSHIFT_DV_DIR}standalone/configuration/datavirt-idp-roles.properties"/>
+                        </login-module>
+                    </authentication>
+                </security-domain>
+                <security-domain name="datavirt-sp" cache-type="default">
+                    <authentication>
+                        <login-module code="org.picketlink.identity.federation.bindings.jboss.auth.SAML2LoginModule" flag="required"/>
+                    </authentication>
+                </security-domain>
             </security-domains>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:teiid:1.0">

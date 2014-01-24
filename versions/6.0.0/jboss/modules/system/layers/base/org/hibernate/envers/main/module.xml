@@ -24,7 +24,7 @@
 
 <module xmlns="urn:jboss:module:1.1" name="org.hibernate.envers">
     <resources>
-        <resource-root path="hibernate-envers-4.2.0.Final-redhat-1.jar"/>
+        <resource-root path="hibernate-envers-4.2.0.SP1-redhat-1.jar"/>
         <!-- Insert resources here -->
     </resources>
 

@@ -22,7 +22,7 @@
   -->
 <module xmlns="urn:jboss:module:1.2" name="org.modeshape.sequencer.zip">
     <resources>
-        <resource-root path="modeshape-sequencer-zip-3.3.5.GA-redhat-1.jar" />
+        <resource-root path="modeshape-sequencer-zip-3.3.6.GA-redhat-4.jar" />
     </resources>
 
     <dependencies>

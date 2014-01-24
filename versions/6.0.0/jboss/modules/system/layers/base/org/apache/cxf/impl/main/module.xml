@@ -29,34 +29,34 @@
     </properties>
 
     <resources>
-        <resource-root path="cxf-rt-bindings-coloc-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-bindings-object-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-bindings-soap-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-bindings-xml-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-core-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-databinding-aegis-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-databinding-jaxb-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-frontend-jaxws-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-frontend-simple-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-management-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-transports-http-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-transports-jms-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-transports-local-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-ws-addr-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-ws-mex-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-ws-policy-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-ws-rm-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-rt-ws-security-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-tools-common-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-tools-java2ws-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-tools-validator-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-tools-wsdlto-core-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-tools-wsdlto-databinding-jaxb-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-tools-wsdlto-frontend-jaxws-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-services-sts-core-2.6.6-redhat-3.jar"/>
-        <resource-root path="cxf-xjc-boolean-2.6.0-redhat-1.jar"/>
-        <resource-root path="cxf-xjc-dv-2.6.0-redhat-1.jar"/>
-        <resource-root path="cxf-xjc-ts-2.6.0-redhat-1.jar"/>
+        <resource-root path="cxf-rt-bindings-coloc-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-bindings-object-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-bindings-soap-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-bindings-xml-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-core-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-databinding-aegis-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-databinding-jaxb-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-frontend-jaxws-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-frontend-simple-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-management-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-transports-http-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-transports-jms-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-transports-local-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-ws-addr-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-ws-mex-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-ws-policy-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-ws-rm-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-rt-ws-security-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-tools-common-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-tools-java2ws-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-tools-validator-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-tools-wsdlto-core-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-tools-wsdlto-databinding-jaxb-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-tools-wsdlto-frontend-jaxws-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-services-sts-core-2.6.8.redhat-7.jar"/>
+        <resource-root path="cxf-xjc-boolean-2.6.0.redhat-4.jar"/>
+        <resource-root path="cxf-xjc-dv-2.6.0.redhat-4.jar"/>
+        <resource-root path="cxf-xjc-ts-2.6.0.redhat-4.jar"/>
         <!-- Insert resources here -->
     </resources>
 
@@ -84,7 +84,20 @@
         <module name="org.apache.santuario.xmlsec" />
         <module name="org.joda.time" />
         <module name="org.opensaml" />
-        <module name="org.springframework.spring" optional="true"/>
-        <module name="org.apache.cxf" export="true"/>
+        <module name="org.springframework.spring" optional="true">
+          <imports>
+            <include path="META-INF"/>
+          </imports>
+        </module>
+        <module name="org.apache.cxf" export="true">
+          <imports>
+            <include path="META-INF/cxf"/>
+            <include path="META-INF"/>
+          </imports>
+          <exports>
+            <include path="META-INF/cxf"/>
+            <include path="META-INF"/>
+          </exports>
+        </module>
     </dependencies>
 </module>

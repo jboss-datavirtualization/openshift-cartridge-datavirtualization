@@ -24,8 +24,8 @@
 
 <module xmlns="urn:jboss:module:1.1" name="org.picketlink">
     <resources>
-        <resource-root path="picketlink-core-2.1.6.Final-redhat-2.jar"/>
-        <resource-root path="picketlink-jbas7-2.1.6.Final-redhat-2.jar"/>
+        <resource-root path="picketlink-core-2.1.6.3.Final-redhat-2.jar"/>
+        <resource-root path="picketlink-jbas7-2.1.6.3.Final-redhat-2.jar"/>
         <!-- Insert resources here -->
     </resources>
 

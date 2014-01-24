@@ -22,40 +22,31 @@
   ~ 51 Franklin Street, Fifth Floor
   ~ Boston, MA  02110-1301  USA
   -->
-<module xmlns="urn:jboss:module:1.2" name="org.hibernate.search.engine" slot="main">
+<module xmlns="urn:jboss:module:1.1" name="org.hibernate.search.engine" slot="main">
     <resources>
-        <resource-root path="hibernate-search-engine-4.2.0.Final-redhat-4.jar" />
-        <resource-root path="hibernate-search-infinispan-4.2.0.Final-redhat-4.jar" />
-        <resource-root path="hibernate-search-analyzers-4.2.0.Final-redhat-4.jar" />
+        <resource-root path="hibernate-search-engine-4.3.0.Final-redhat-5.jar" />
+        <resource-root path="hibernate-search-infinispan-4.3.0.Final-redhat-5.jar" />
+        <resource-root path="hibernate-search-analyzers-4.3.0.Final-redhat-5.jar" />
         <resource-root path="avro-1.6.3.jar" />
         <resource-root path="jackson-core-asl-1.9.2-redhat-2.jar" />
         <resource-root path="jackson-mapper-asl-1.9.2-redhat-2.jar" />
         <resource-root path="paranamer-2.3.jar" />
-        <resource-root path="snappy-java-1.0.4.1.jar" />
     </resources>
     <dependencies>
         <module name="javax.transaction.api" />
         <module name="org.hibernate" />
-        <module name="org.apache.lucene" export="true" slot="3.6.2" />
-        <module name="org.apache.solr" export="true" optional="true" slot="3.6.2" />
+        <module name="org.hibernate.commons-annotations" />
+        <module name="org.apache.lucene" export="true" slot="3.6.2-redhat-4" />
+        <module name="org.apache.solr" export="true" optional="true" slot="3.6.2-redhat-4" />
+        <module name="org.infinispan.lucene-directory" slot="5.2.7.Final-redhat-4" />
+        <module name="org.infinispan" />
         <module name="org.jboss.logging" />
         <module name="org.jgroups" />
-        <module name="org.infinispan" />
         <module name="javax.persistence.api" />
+        <module name="javax.jms.api" />
 
         <!-- For naming (used by Hibernate Search Infinispan) -->
         <module name="javax.api" />
         <module name="org.jboss.as.naming" />
-
-        <!--
-            //TODO author=Horia Chiorean date=3/1/13 description=https://issues.jboss.org/browse/MODE-1838
-        -->
-        <module name="org.hibernate.commons-annotations" />
-
-        <!--
-            For JMS
-            //TODO author=Horia Chiorean date=3/1/13 description=https://issues.jboss.org/browse/MODE-1933
-        -->
-        <module name="javax.jms.api"/>
     </dependencies>
 </module>
