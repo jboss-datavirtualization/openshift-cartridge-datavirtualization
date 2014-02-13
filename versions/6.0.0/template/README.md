@@ -1,3 +1,3 @@
-The OpenShift `torquebox` cartridge documentation can be found at:
+The OpenShift `Data Virtualization` cartridge documentation can be found at:
 
-https://github.com/openshift/origin-server/tree/master/cartridges/openshift-origin-cartridge-torquebox/README.md
+https://github.com/mdrillin/openshift-cartridge-datavirtualization
