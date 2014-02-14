@@ -25,8 +25,8 @@
         <extension module="org.jboss.as.web"/>
         <extension module="org.jboss.as.webservices"/>
         <extension module="org.jboss.as.weld"/>
-        <extension module="org.jboss.teiid"/>
         <extension module="org.modeshape"/>
+        <extension module="org.jboss.teiid"/>
     </extensions>
     
     <system-properties>
@@ -145,52 +145,45 @@
         <subsystem xmlns="urn:jboss:domain:deployment-scanner:1.1">
             <deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000" deployment-timeout="300"/>
         </subsystem>
-		<subsystem xmlns="urn:jboss:domain:ee:1.1">
-			<spec-descriptor-property-replacement>false
-			</spec-descriptor-property-replacement>
-			<jboss-descriptor-property-replacement>true
-			</jboss-descriptor-property-replacement>
-		</subsystem>
-		<subsystem xmlns="urn:jboss:domain:ejb3:1.4">
-			<session-bean>
-				<stateless>
-					<bean-instance-pool-ref pool-name="slsb-strict-max-pool" />
-				</stateless>
-				<stateful default-access-timeout="5000" cache-ref="simple"/>
-				<singleton default-access-timeout="5000" />
-			</session-bean>
-			<pools>
-				<bean-instance-pools>
-					<strict-max-pool name="slsb-strict-max-pool"
-						max-pool-size="20" instance-acquisition-timeout="5"
-						instance-acquisition-timeout-unit="MINUTES" />
-					<strict-max-pool name="mdb-strict-max-pool"
-						max-pool-size="20" instance-acquisition-timeout="5"
-						instance-acquisition-timeout-unit="MINUTES" />
-				</bean-instance-pools>
-			</pools>
-			<caches>
-				<cache name="simple" aliases="NoPassivationCache" />
-				<cache name="passivating" passivation-store-ref="file"
-					aliases="SimpleStatefulCache" />
-			</caches>
-			<passivation-stores>
-				<file-passivation-store name="file" />
-			</passivation-stores>
-			<async thread-pool-name="default" />
-			<timer-service thread-pool-name="default">
-				<data-store path="timer-service-data" relative-to="jboss.server.data.dir" />
-			</timer-service>
-			<remote connector-ref="remoting-connector" thread-pool-name="default" />
-			<thread-pools>
-				<thread-pool name="default">
-					<max-threads count="10" />
-					<keepalive-time time="100" unit="milliseconds" />
-				</thread-pool>
-			</thread-pools>
-                       <default-security-domain value="other"/>
-                       <default-missing-method-permissions-deny-access value="true"/>
-		</subsystem>
+        <subsystem xmlns="urn:jboss:domain:ee:1.1">
+            <spec-descriptor-property-replacement>false</spec-descriptor-property-replacement>
+            <jboss-descriptor-property-replacement>true</jboss-descriptor-property-replacement>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:ejb3:1.4">
+            <session-bean>
+                <stateless>
+                    <bean-instance-pool-ref pool-name="slsb-strict-max-pool"/>
+                </stateless>
+                <stateful default-access-timeout="5000" cache-ref="simple"/>
+                <singleton default-access-timeout="5000"/>
+            </session-bean>
+            <pools>
+                <bean-instance-pools>
+                    <strict-max-pool name="slsb-strict-max-pool" max-pool-size="20" instance-acquisition-timeout="5" instance-acquisition-timeout-unit="MINUTES"/>
+                    <strict-max-pool name="mdb-strict-max-pool" max-pool-size="20" instance-acquisition-timeout="5" instance-acquisition-timeout-unit="MINUTES"/>
+                </bean-instance-pools>
+            </pools>
+            <caches>
+                <cache name="simple" aliases="NoPassivationCache"/>
+                <cache name="passivating" passivation-store-ref="file" aliases="SimpleStatefulCache"/>
+            </caches>
+            <passivation-stores>
+                <file-passivation-store name="file"/>
+            </passivation-stores>
+            <async thread-pool-name="default"/>
+            <timer-service thread-pool-name="default">
+                <data-store path="timer-service-data" relative-to="jboss.server.data.dir"/>
+            </timer-service>
+            <remote connector-ref="remoting-connector" thread-pool-name="default"/>
+            <thread-pools>
+                <thread-pool name="default">
+                    <max-threads count="10"/>
+                    <keepalive-time time="100" unit="milliseconds"/>
+                </thread-pool>
+            </thread-pools>
+            <default-security-domain value="other"/>
+            <default-missing-method-permissions-deny-access value="true"/>
+        </subsystem>
         <subsystem xmlns="urn:jboss:domain:infinispan:1.4">
             <cache-container name="web" aliases="standard-session-cache" default-cache="local-web" module="org.jboss.as.clustering.web.infinispan">
                 <local-cache name="local-web" batching="true">
@@ -213,6 +206,12 @@
                     <eviction strategy="NONE"/>
                 </local-cache>
             </cache-container>
+            <cache-container name="modeshape" module="org.modeshape">
+                <local-cache name="dv">
+                    <transaction mode="NON_XA"/>
+                    <file-store relative-to="jboss.server.data.dir" path="modeshape/store/dv" passivation="false" purge="false"/>
+                </local-cache>
+            </cache-container>
             <cache-container name="teiid-cache" default-cache="resultset">
                 <local-cache name="resultset-repl" batching="true">
                     <locking isolation="READ_COMMITTED"/>
@@ -232,34 +231,28 @@
                     <expiration lifespan="28800"/>
                 </local-cache>
             </cache-container>
-            <cache-container name="modeshape">
-                <local-cache name="dv">
-                    <transaction mode="NON_XA"/>
-                    <file-store relative-to="jboss.server.data.dir" path="modeshape/store/dv" passivation="false" purge="false"/>
-                </local-cache>
-            </cache-container>
         </subsystem>
-		<subsystem xmlns="urn:jboss:domain:jaxrs:1.0" />
-		<subsystem xmlns="urn:jboss:domain:jca:1.1">
-			<archive-validation enabled="true" fail-on-error="true" fail-on-warn="false"/>
+        <subsystem xmlns="urn:jboss:domain:jaxrs:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:jca:1.1">
+            <archive-validation enabled="true" fail-on-error="true" fail-on-warn="false"/>
             <bean-validation enabled="true"/>
-			<default-workmanager>
-				<short-running-threads>
-					<core-threads count="50" />
-					<queue-length count="50" />
-					<max-threads count="50" />
-					<keepalive-time time="10" unit="seconds" />
-				</short-running-threads>
-				<long-running-threads>
-					<core-threads count="50" />
-					<queue-length count="50" />
-					<max-threads count="50" />
-					<keepalive-time time="10" unit="seconds" />
-				</long-running-threads>
-			</default-workmanager>
-			<cached-connection-manager />
-		</subsystem>
-		<subsystem xmlns="urn:jboss:domain:jdr:1.0" />
+            <default-workmanager>
+                <short-running-threads>
+                    <core-threads count="50"/>
+                    <queue-length count="50"/>
+                    <max-threads count="50"/>
+                    <keepalive-time time="10" unit="seconds"/>
+                </short-running-threads>
+                <long-running-threads>
+                    <core-threads count="50"/>
+                    <queue-length count="50"/>
+                    <max-threads count="50"/>
+                    <keepalive-time time="10" unit="seconds"/>
+                </long-running-threads>
+            </default-workmanager>
+            <cached-connection-manager/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:jdr:1.0"/>
         <subsystem xmlns="urn:jboss:domain:jmx:1.2">
             <expose-resolved-model/>
             <expose-expression-model/>
@@ -274,13 +267,13 @@
                 <smtp-server outbound-socket-binding-ref="mail-smtp"/>
             </mail-session>
         </subsystem>
-		<subsystem xmlns="urn:jboss:domain:naming:1.3">
-			<remote-naming />
-		</subsystem>
-		<subsystem xmlns="urn:jboss:domain:pojo:1.0" />
-		<subsystem xmlns="urn:jboss:domain:remoting:1.1">
-			<connector name="remoting-connector" socket-binding="remoting" />
-		</subsystem>
+        <subsystem xmlns="urn:jboss:domain:naming:1.3">
+            <remote-naming/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:pojo:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:remoting:1.1">
+            <connector name="remoting-connector" socket-binding="remoting" />
+        </subsystem>
         <subsystem xmlns="urn:jboss:domain:resource-adapters:1.1">
             <resource-adapters>
                 <resource-adapter id="file">
@@ -306,8 +299,8 @@
                 </resource-adapter>
             </resource-adapters>        
         </subsystem>
-		<subsystem xmlns="urn:jboss:domain:sar:1.0" />
-		<subsystem xmlns="urn:jboss:domain:security:1.2">
+        <subsystem xmlns="urn:jboss:domain:sar:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:security:1.2">
             <security-domains>
                 <security-domain name="other" cache-type="default">
                     <authentication>
@@ -369,10 +362,10 @@
             <transport name="odata">
                 <authentication security-domain="teiid-security"/>
             </transport>
-            <transport name="jdbc" protocol="teiid" socket-binding="teiid-jdbc">
+            <transport name="jdbc" socket-binding="teiid-jdbc" protocol="teiid">
                 <authentication security-domain="teiid-security"/>
             </transport>
-            <transport name="odbc" protocol="pg" socket-binding="teiid-odbc">
+            <transport name="odbc" socket-binding="teiid-odbc" protocol="pg">
                 <authentication security-domain="teiid-security"/>
             </transport>
             <translator name="jdbc-simple" module="org.jboss.teiid.translator.jdbc"/>
@@ -472,22 +465,24 @@
 
 	<interfaces>
 		<interface name="management">
-			<loopback-address value="${env.OPENSHIFT_INTERNAL_IP}" />
+			<loopback-address value="${env.OPENSHIFT_DV_IP}" />
 		</interface>
 		<interface name="public">
-			<loopback-address value="${env.OPENSHIFT_INTERNAL_IP}" />
+			<loopback-address value="${env.OPENSHIFT_DV_IP}" />
 		</interface>
 		<interface name="unsecure">
 			<!-- Used for IIOP sockets in the standarad configuration. To secure JacORB 
 				you need to setup SSL -->
-			<loopback-address value="${env.OPENSHIFT_INTERNAL_IP}" />
+			<loopback-address value="${env.OPENSHIFT_DV_IP}" />
 		</interface>
 	</interfaces>
 
 	<socket-binding-group name="standard-sockets"
 		default-interface="public" port-offset="0">
-                <socket-binding name="management-native" interface="management" port="9999"/>
-                <socket-binding name="management-http" interface="management" port="9990"/>
+		<socket-binding name="management-native" interface="management"
+			port="${env.OPENSHIFT_DV_MANAGEMENT_NATIVE_PORT}" />
+		<socket-binding name="management-http" interface="management"
+			port="${env.OPENSHIFT_DV_MANAGEMENT_HTTP_PORT}" />
 
 		<socket-binding name="http" port="${env.OPENSHIFT_DV_HTTP_PORT}" />
 		<socket-binding name="jacorb" interface="unsecure" port="3528" />
