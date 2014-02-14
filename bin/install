@@ -1,4 +1,6 @@
-#!/bin/bash -eux
+#!/bin/bash -eu
+
+source $OPENSHIFT_DV_DIR/bin/util
 
 case "$1" in
   -v|--version)
@@ -29,6 +31,9 @@ JBOSS_HOME=${OPENSHIFT_DV_DIR}/jboss
 pushd $OPENSHIFT_DV_DIR > /dev/null
   ln -s ${JBOSS_HOME}/jboss-modules.jar
   ln -s ${JBOSS_HOME}/modules
-popd > /dev/null
+popd 1> /dev/null
 
-echo "$JAVA_HOME/bin:$M2_HOME/bin" > $OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_PATH
+touch ${OPENSHIFT_DV_DIR}/env/OPENSHIFT_DV_CLUSTER
+touch ${OPENSHIFT_DV_DIR}/env/OPENSHIFT_DV_CLUSTER_REMOTING
+
+update-configuration java7

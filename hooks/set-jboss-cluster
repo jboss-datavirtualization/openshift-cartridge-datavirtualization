@@ -17,5 +17,4 @@ for arg in $kvargs; do
     fi
 done
 
-set_uservars "OPENSHIFT_DV_CLUSTER=OPENSHIFT_DV_CLUSTER=${list}"
-
+echo $list > $OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_CLUSTER

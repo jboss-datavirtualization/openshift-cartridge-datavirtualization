@@ -4,17 +4,103 @@ source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
 DV_BIN_DIR=${OPENSHIFT_DV_DIR}/bin
 DV_PID_FILE=${OPENSHIFT_HOMEDIR}/app-root/runtime/DV.pid
+DV_DEPLOYMENTS_DIR=${OPENSHIFT_DV_DIR}/standalone/deployments
+SCANCONFIG=""
+
+source $DV_BIN_DIR/util
 
 cartridge_type="dv"
 
-# Checks for the presence of the user-specified hot_deploy marker in the app
-# repo. Returns 0 if the marker is present, otherwise 1.
-function hot_deploy_marker_is_present {
-  if [ -f "${OPENSHIFT_REPO_DIR}/.openshift/markers/hot_deploy" ]; then
-    return 0
-  else
-    return 1
-  fi
+# Return the deployment-scanner configuration
+function getscanconfig() {
+    count=0
+    while [ ${count} -lt 4 ]; do
+      controller="${OPENSHIFT_DV_IP}:${OPENSHIFT_DV_MANAGEMENT_NATIVE_PORT}"
+      scanconfig=`jboss-cli.sh -c --controller=${controller} "/subsystem=deployment-scanner/:read-resource(recursive=true)" 2>&1 || :`
+      if [[ $scanconfig =~ '"outcome" => "success"' ]] ; then
+        SCANCONFIG=$scanconfig
+        return
+      fi
+      let count+=1
+
+      sleep 2
+    done
+}
+
+# Verify that the deployment scanner has finished running
+function waitondeployments() {
+    if ! ismgmtup; then
+      client_message "Timed out waiting for management listening port"
+      client_message "Could not connect to JBoss management interface, skipping deployment verification"
+    else 
+      getscanconfig
+
+      if [ "$SCANCONFIG" == "" ]; then
+        client_message "Could not connect to JBoss management interface, skipping deployment verification"
+      elif [[ $SCANCONFIG =~ '"scan-enabled" => true' ]]; then
+        pushd $DV_DEPLOYMENTS_DIR
+
+        artifacts=()
+        while read -r -d $'\0'; do
+          artifacts+=("$REPLY")
+        done < <(find . -iregex '.*\.\([ejrsw]ar\|zip\)$' -print0)
+
+        deployexploded=false
+        if [[ $SCANCONFIG =~ '"auto-deploy-exploded" => true' ]]; then
+          deployexploded=true
+        fi
+        deployarchive=false
+        if [[ $SCANCONFIG =~ '"auto-deploy-zipped" => true' ]]; then
+          deployarchive=true
+        fi 
+
+        artifactsdeployed=()
+        artifactsfailed=()
+        artifactsskipped=()
+        artifactsunknown=()
+        for artifact in ${artifacts[*]}; do
+          if ( [ -f $artifact ] && $deployarchive ) || ( [ -d $artifact ] && $deployexploded ); then         
+            # TODO triple check this logic, add a timeout 
+            while [ -f ${artifact}.isdeploying ]; do
+              client_message "Artifact: ${artifact} is still deploying"
+              sleep 10
+            done
+
+            if [ -f ${artifact}.deployed ]; then
+              artifactsdeployed+=($artifact)
+            elif [ -f ${artifact}.failed ]; then
+              artifactsfailed+=($artifact)
+            else
+              artifactsunknown+=($artifact)
+            fi
+
+          else
+            # artifact skipped because of deployment scanner config
+            artifactsskipped+=($artifact)
+          fi
+        done
+
+        popd
+
+        if [ ${#artifactsskipped[@]} -gt 0 ]; then
+          echo "Artifacts skipped because of deployment-scanner configuration: ${artifactsskipped[*]}"
+        fi
+
+        if [ ${#artifactsfailed[@]} -gt 0 ]; then
+          echo "Failed deployments: ${artifactsfailed[*]}"
+        fi
+
+        if [ ${#artifactsdeployed[@]} -gt 0 ]; then
+          echo "Artifacts deployed: ${artifactsdeployed[*]}"
+        fi
+
+        if [ ${#artifactsunknown[@]} -gt 0 ]; then
+          echo "Artifacts in an unknown state: ${artifactsunknown[*]}"
+        fi
+      else
+          echo "Deployment scanner disabled, skipping deployment verification"
+      fi
+    fi
 }
 
 # Check if the data virtualization process is running
@@ -40,17 +126,20 @@ killtree() {
     done
 
     local should_be_gone_pid=$(ps -o pid -p ${_pid} --no-headers)
-    if [ -z $should_be_gone_pid ]; then
+    if [ -z "$should_be_gone_pid" ]; then
         return
     else
-        kill -TERM ${_pid}
+        # process might have finished stopping after the ps check above
+        # so prevent kill from throwing an error (which would exit the script due to bash -e)
+        # with || true
+        kill -TERM ${_pid} || true
     fi
 
     local count=0
     while [ ${count} -lt 15 ]
     do
         local should_be_gone_pid=$(ps -o pid -p ${_pid} --no-headers)
-        if [ -z $should_be_gone_pid ]; then
+        if [ -z "$should_be_gone_pid" ]; then
                 return
         else
                 sleep 2
@@ -67,17 +156,38 @@ killtree() {
 
 # Check if the server http port is up
 function ishttpup() {
-
-    let count=0
-    while [ ${count} -lt 24 ]
+    count=0
+    while [ ${count} -lt 64 ]
     do
         if /usr/sbin/lsof -P -n -i "@${OPENSHIFT_DV_IP}:${OPENSHIFT_DV_HTTP_PORT}" | grep "(LISTEN)" > /dev/null; then
             echo "Found ${OPENSHIFT_DV_IP}:${OPENSHIFT_DV_HTTP_PORT} listening port"
             return 0
         fi
+        # if the process failed to start, error out immediately
+        # rather than waiting for the timeout on the port being available.
+        if ! ps | grep -v grep | grep $PROCESS_ID > /dev/null; then
+          return 2
+        fi
+
         let count=${count}+1
 
-		echo "Waiting for HTTP ..."
+        sleep 2
+    done
+
+    return 1
+}
+
+# Check if the server mgmt port is up
+function ismgmtup() {
+    let count=0
+    while [ ${count} -lt 10 ]
+    do
+        if /usr/sbin/lsof -P -n -i "@${OPENSHIFT_DV_IP}:${OPENSHIFT_DV_MANAGEMENT_NATIVE_PORT}" | grep "(LISTEN)" > /dev/null; then
+            echo "Found ${OPENSHIFT_DV_IP}:${OPENSHIFT_DV_MANAGEMENT_NATIVE_PORT} listening port"
+            return 0
+        fi
+        let count=${count}+1
+
         sleep 2
     done
 
@@ -93,22 +203,21 @@ function build() {
 	    OPENSHIFT_MAVEN_MIRROR="${CONFIG_DIR}/settings.rhcloud.xml"
 	fi
 
-	max_memory_bytes=$(oo-cgroup-read memory.limit_in_bytes)
-	max_memory_mb=$(expr $max_memory_bytes / 1048576)
+  max_memory_mb=${OPENSHIFT_GEAR_MEMORY_MB}
 
-	# If hot deploy is enabled, we need to restrict the Maven memory size to fit
-	# alongside the running application server. For now, just hard-code it to 64
-	# and figure out how to apply a scaling factor later.
-	if hot_deploy_marker_is_present
+  # If hot deploy is enabled, we need to restrict the Maven memory size to fit
+  # alongside the running application server. For now, just hard-code it to 64
+  # and figure out how to apply a scaling factor later.
+  if hot_deploy_enabled_for_latest_deployment
     then
-    	echo "Scaling down Maven heap settings due to presence of hot_deploy marker"
-    
-    	if [ -z $MAVEN_JVM_HEAP_RATIO ]
+      echo "Scaling down Maven heap settings due to presence of hot_deploy marker"
+
+      if [ -z "$MAVEN_JVM_HEAP_RATIO" ]
         then
-			  MAVEN_JVM_HEAP_RATIO=0.25
-		fi
-	else
-		if [ -z $MAVEN_JVM_HEAP_RATIO ]
+        MAVEN_JVM_HEAP_RATIO=0.25
+    fi
+  else
+    if [ -z "$MAVEN_JVM_HEAP_RATIO" ]
         then
 			MAVEN_JVM_HEAP_RATIO=0.75
 		fi
@@ -118,73 +227,65 @@ function build() {
 
 	OPENSHIFT_MAVEN_XMX="-Xmx${max_heap}m"
 
-	if [ -z "$BUILD_NUMBER" ]
-	then
-    	SKIP_MAVEN_BUILD=false
-    	if git show master:.openshift/markers/skip_maven_build > /dev/null 2>&1
-    	then
-    	    SKIP_MAVEN_BUILD=true
-    	fi
-    
-    	if [ -f "${OPENSHIFT_REPO_DIR}/.openshift/markers/force_clean_build" ]
-    	then
-        	echo ".openshift/markers/force_clean_build found!  Removing Maven dependencies." 1>&2
-        	rm -rf ${OPENSHIFT_HOMEDIR}.m2/* ${OPENSHIFT_HOMEDIR}.m2/.[^.]*
-    	fi
+  if [ -z "$BUILD_NUMBER" ]
+  then
+      if force_clean_build_enabled_for_latest_deployment
+      then
+          echo "Force-clean build is enabled. Removing Maven dependencies." 1>&2
+          rm -rf ${OPENSHIFT_HOMEDIR}.m2/* ${OPENSHIFT_HOMEDIR}.m2/.[^.]*
+      fi
 
-    	if [ -f ${OPENSHIFT_REPO_DIR}pom.xml ] && ! $SKIP_MAVEN_BUILD
-    	then
-        	if [ -e ${OPENSHIFT_REPO_DIR}.openshift/markers/java7 ];
-        	then
-           		export JAVA_HOME=/etc/alternatives/java_sdk_1.7.0
-        	else
-          		export JAVA_HOME=/etc/alternatives/java_sdk_1.6.0
-        	fi
+      if [ -f ${OPENSHIFT_REPO_DIR}pom.xml ] && ! marker_present skip_maven_build
+      then
+          pushd ${OPENSHIFT_REPO_DIR} > /dev/null
 
-          echo $JAVA_HOME >$OPENSHIFT_DV_DIR/env/JAVA_HOME
-          echo "$JAVA_HOME/bin:$M2_HOME/bin" >$OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_PATH
+          if [ -z "$MAVEN_OPTS" ]; then
+            export MAVEN_OPTS="$OPENSHIFT_MAVEN_XMX"
+          fi
 
-        	export MAVEN_OPTS="$OPENSHIFT_MAVEN_XMX"
-        	export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH
-        	pushd ${OPENSHIFT_REPO_DIR} > /dev/null
+          if [ -z "$MAVEN_ARGS" ]; then
+            export MAVEN_ARGS="clean package -Popenshift -DskipTests"
+          fi
 
-        	if [ -z "$MAVEN_OPTS" ]; then
-        		export MAVEN_OPTS="$OPENSHIFT_MAVEN_XMX"
-        	fi
-        	
-        	if [ -z "$MAVEN_ARGS" ]; then
-		    	export MAVEN_ARGS="clean package -Popenshift -DskipTests"
-        	fi
-        
-        	echo "Found pom.xml... attempting to build with 'mvn -e ${MAVEN_ARGS}'"
-        
-        	if [ -n "$OPENSHIFT_MAVEN_MIRROR" ]
-        	then
-            	mvn --global-settings $OPENSHIFT_MAVEN_MIRROR --version
-            	mvn --global-settings $OPENSHIFT_MAVEN_MIRROR $MAVEN_ARGS
-        	else
-            	mvn --version
-            	mvn $MAVEN_ARGS
-        	fi
-        	popd > /dev/null
-    	fi
-	fi
+          echo "Found pom.xml... attempting to build with 'mvn -e ${MAVEN_ARGS}'"
+
+          if [ -n "$OPENSHIFT_MAVEN_MIRROR" ]
+          then
+              mvn --global-settings $OPENSHIFT_MAVEN_MIRROR --version
+              mvn --global-settings $OPENSHIFT_MAVEN_MIRROR $MAVEN_ARGS
+          else
+              mvn --version
+              mvn $MAVEN_ARGS
+          fi
+          popd > /dev/null
+      fi
+      
+      if [ ! -f ${OPENSHIFT_REPO_DIR}pom.xml ]; then
+        echo "Skipping Maven build due to absence of pom.xml"      
+      fi
+
+      if marker_present "skip_maven_build"; then
+        echo "skip_maven_build marker found; build will be skipped"
+      fi
+
+  fi
 
 }
 
 function deploy() {
   echo "Deploying JBoss"
-  
-	if [ "$(ls ${OPENSHIFT_REPO_DIR}/deployments)" ]; then
-		rsync -r --delete --exclude ".*" ${OPENSHIFT_REPO_DIR}/deployments/ ${OPENSHIFT_DV_DIR}/standalone/deployments/
-	else
-    rm -rf ${OPENSHIFT_DV_DIR}/standalone/deployments/*
+
+  # if repo/deployments has any files in it, sync them to $DV_DEPLOYMENTS_DIR
+  # and delete any files in $DV_DEPLOYMENTS_DIR that don't exist in
+  # repo/deployments
+  if [ "$(ls ${OPENSHIFT_REPO_DIR}/deployments 2>/dev/null)" ]; then
+    rsync -r --delete --exclude ".*" ${OPENSHIFT_REPO_DIR}/deployments/ $DV_DEPLOYMENTS_DIR
   fi
 }
 
 function start() {
-  echo "Starting $cartridge_type cart"
-    
+  echo "Starting $cartridge_type cartridge"
+
   if marker_present "enable_jpda"
   then
     export ENABLE_JPDA=1
@@ -197,17 +298,25 @@ function start() {
     ${DV_BIN_DIR}/standalone.sh > ${OPENSHIFT_TMP_DIR}/${cartridge_type}.log 2>&1 &
     PROCESS_ID=$!
     echo "$PROCESS_ID" > ${DV_PID_FILE}
-    if ! ishttpup; then
-        echo "Timed out waiting for http listening port"
-        exit 1
+
+    rc=0
+    ishttpup || rc=$?
+    if [ $rc -eq 1 ]; then
+      echo "Timed out waiting for http listening port for $cartridge_type process"
+      exit 1
+    elif [ $rc -eq 2 ]; then
+      echo "$cartridge_type process failed to start"
+      exit 2
     fi
+
+    waitondeployments
   fi
 }
 
 
 function stop() {
-  echo "Stopping $cartridge_type cart"
-  
+  echo "Stopping $cartridge_type cartridge"
+
   if isrunning; then
            # copy standalone.xml to repo, so state is saved on restart
            if [ -f "${OPENSHIFT_DV_DIR}/standalone/configuration/standalone.xml" ]; then
@@ -224,24 +333,20 @@ function stop() {
 }
 
 function restart() {
-    echo "Restarting $cartridge_type cart"
-   
-  	stop
-  	
-  	start
+    stop
+    start
 }
 
 function status() {
    if isrunning
    then
-      echo "Application is running"
+      client_result "Application is running"
    else
-      echo "Application is either stopped or inaccessible"
+      client_result "Application is either stopped or inaccessible"
    fi
 }
 
 function reload() {
-    echo "Reloading $cartridge_type cart"
     restart
 }
 
@@ -250,11 +355,12 @@ function tidy() {
   client_message "Emptying log dir: $OPENSHIFT_DV_LOG_DIR"
   shopt -s dotglob
   rm -rf $OPENSHIFT_DV_LOG_DIR/*
+  rm -rf $OPENSHIFT_DV_DIR/standalone/tmp/*
 }
 
 function threaddump() {
-	echo "Thread dump for $cartridge_type cart"
-	
+  echo "Thread dump for $cartridge_type cartridge"
+
     if ! isrunning; then
         echo "Application is stopped"
         exit 1
@@ -264,23 +370,33 @@ function threaddump() {
         kill -3 $java_pid
         client_result "Success"
         client_result ""
-        client_result "The thread dump file will be available via: rhc tail $OPENSHIFT_APP_NAME -f */logs/server.log -o '-n 250'"
+        client_result "The thread dump file will be available via: rhc tail $OPENSHIFT_APP_NAME -g $OPENSHIFT_GEAR_UUID -f ${OPENSHIFT_TMP_DIR}${cartridge_type}.log -o '-n 250'"
     else 
         echo "Failed to locate JBOSS PID File"
     fi
 }
 
+function pre_restore() {
+  # this directory contains cached versions of the built jsps which will continue
+  # to get used because they have newer dates than the restored archive.
+  rm -rf $OPENSHIFT_DV_DIR/standalone/tmp/* 
+}
+
+export OPENSHIFT_SECRET_TOKEN=${OPENSHIFT_SECRET_TOKEN:-OPENSHIFT_APP_UUID}
+
 case "$1" in
-  build)		build ;;
-  deploy)	    deploy ;;
-  start)     	start ;;
-  stop)      	stop ;;
-  restart)   	restart ;;
-  status)    	status ;;
-  reload)    	reload ;;
-  tidy)      	tidy ;;
-  threaddump)   threaddump ;;
-  *)         	exit 0
+  build)           build ;;
+  deploy)          deploy ;;
+  pre-restore)     pre_restore ;;
+  start)           start ;;
+  stop)            stop ;;
+  restart)         restart ;;
+  status)          status ;;
+  reload)          reload ;;
+  tidy)            tidy ;;
+  threaddump)      threaddump ;;
+  update-configuration) update-configuration;;
+  *)               exit 0
 esac
 
 

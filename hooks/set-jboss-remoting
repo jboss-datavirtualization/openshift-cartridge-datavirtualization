@@ -2,6 +2,8 @@
 
 # Adds a gear to the haproxy configuration.
 
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
 # Exit on any errors
 set -e
 
@@ -17,4 +19,4 @@ for arg in $kvargs; do
     fi
 done
 
-set_uservars "OPENSHIFT_DV_CLUSTER_REMOTING=OPENSHIFT_DV_CLUSTER_REMOTING=${list}"
+echo $list > $OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_CLUSTER_REMOTING
