@@ -195,13 +195,12 @@ function ismgmtup() {
 }
 
 function build() {
-    
-	CONFIG_DIR="${OPENSHIFT_DV_DIR}/standalone/configuration"
-	OPENSHIFT_MAVEN_MIRROR="${CONFIG_DIR}/settings.base.xml"
+  CONFIG_DIR="${OPENSHIFT_DV_DIR}/standalone/configuration"
+  OPENSHIFT_MAVEN_MIRROR="${CONFIG_DIR}/settings.base.xml"
   if [[ $OPENSHIFT_GEAR_DNS =~ .*\.rhcloud\.com$ ]]
-	then
-	    OPENSHIFT_MAVEN_MIRROR="${CONFIG_DIR}/settings.rhcloud.xml"
-	fi
+  then
+      OPENSHIFT_MAVEN_MIRROR="${CONFIG_DIR}/settings.rhcloud.xml"
+  fi
 
   max_memory_mb=${OPENSHIFT_GEAR_MEMORY_MB}
 
@@ -219,13 +218,13 @@ function build() {
   else
     if [ -z "$MAVEN_JVM_HEAP_RATIO" ]
         then
-			MAVEN_JVM_HEAP_RATIO=0.75
-		fi
-	fi
+      MAVEN_JVM_HEAP_RATIO=0.75
+    fi
+  fi
 
-	max_heap=$( echo "$max_memory_mb * $MAVEN_JVM_HEAP_RATIO" | bc | awk '{print int($1+0.5)}')
+  max_heap=$( echo "$max_memory_mb * $MAVEN_JVM_HEAP_RATIO" | bc | awk '{print int($1+0.5)}')
 
-	OPENSHIFT_MAVEN_XMX="-Xmx${max_heap}m"
+  OPENSHIFT_MAVEN_XMX="-Xmx${max_heap}m"
 
   if [ -z "$BUILD_NUMBER" ]
   then
