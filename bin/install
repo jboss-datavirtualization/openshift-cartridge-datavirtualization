@@ -17,13 +17,15 @@ mv ${OPENSHIFT_DV_DIR}/versions/${version}/share/* ${OPENSHIFT_DV_DIR}/share
 mv ${OPENSHIFT_DV_DIR}/versions/${version}/jboss/modules ${OPENSHIFT_DV_DIR}/jboss
 mv ${OPENSHIFT_DV_DIR}/versions/${version}/jboss/jboss-modules.jar ${OPENSHIFT_DV_DIR}/jboss
 cp ${OPENSHIFT_DV_DIR}/standalone/configuration/standalone.xml ${OPENSHIFT_DV_DIR}/template/.openshift/config
-cp ${OPENSHIFT_DV_DIR}/versions/${version}/template/deployments/* ${OPENSHIFT_DV_DIR}/standalone/deployments
+cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/CustomerRESTWebSvc.war ${OPENSHIFT_DV_DIR}/standalone/deployments/CustomerRESTWebSvc.war
+cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/datavirt-1.0.war ${OPENSHIFT_DV_DIR}/standalone/deployments/datavirt-1.0.war
+cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/datavirt-commons-idp-eap61-1.0.0.war ${OPENSHIFT_DV_DIR}/standalone/deployments/datavirt-commons-idp-eap61-1.0.0.war
+cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/datavirt-ui-eap61.war ${OPENSHIFT_DV_DIR}/standalone/deployments/datavirt-ui-eap61.war
+cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/teiid-dashboard-distribution-builder-1.0.0-redhat-1-jboss-as7.war ${OPENSHIFT_DV_DIR}/standalone/deployments/teiid-dashboard-distribution-builder-1.0.0-redhat-1-jboss-as7.war
 
 pushd $OPENSHIFT_DV_DIR/template/src/main/webapp
   jar cvf $OPENSHIFT_DV_DIR/standalone/deployments/ROOT.war ./*
 popd
-
-cp ${OPENSHIFT_DV_DIR}/standalone/deployments/ROOT.war ${OPENSHIFT_REPO_DIR}/deployments
 
 JBOSS_HOME=${OPENSHIFT_DV_DIR}/jboss
 pushd $OPENSHIFT_DV_DIR > /dev/null
