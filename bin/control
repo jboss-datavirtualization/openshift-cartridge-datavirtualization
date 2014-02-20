@@ -10,6 +10,7 @@ SCANCONFIG=""
 source $DV_BIN_DIR/util
 
 cartridge_type="dv"
+dv_version="6.0.0"
 
 # Return the deployment-scanner configuration
 function getscanconfig() {
@@ -289,6 +290,16 @@ function deploy() {
   if [ "$(ls ${OPENSHIFT_REPO_DIR}/deployments 2>/dev/null)" ]; then
     rsync -r --delete --exclude ".*" ${OPENSHIFT_REPO_DIR}/deployments/ $DV_DEPLOYMENTS_DIR
   fi
+  # copy standard dv default wars to deployments
+  pushd $OPENSHIFT_DV_DIR/versions/$dv_version/standalone/deployments
+    cp CustomerRESTWebSvc.war $DV_DEPLOYMENTS_DIR
+    cp datavirt-commons-idp-eap61-1.0.0.war $DV_DEPLOYMENTS_DIR
+    cp datavirt-ui-eap61.war $DV_DEPLOYMENTS_DIR
+    cp teiid-dashboard-distribution-builder-1.0.0-redhat-1-jboss-as7.war $DV_DEPLOYMENTS_DIR
+  popd
+  pushd $OPENSHIFT_DV_DIR/template/src/main/webapp
+    jar cvf $OPENSHIFT_DV_DIR/standalone/deployments/ROOT.war ./*
+  popd
 }
 
 function start() {
