@@ -1,40 +1,38 @@
-# OpenShift DataVirtualizaton Cartridge
+## DataVirtualizaton Cartridge for OpenShift
 
 ## Summary
-This cartridge provides the RedHat JBoss **_DataVirtualization Platform_** running in the JBoss application server on OpenShift. 
+This cartridge provides the RedHat JBoss **_DataVirtualization Platform_** for easy deployment to OpenShift. 
 
-The [DataVirtualization Cartridge](https://github.com/mdrillin/openshift-cartridge-datavirtualization) provides the RedHat JBoss **DataVirtualization** components.
-
-The following components are included
+The [DataVirtualization Cartridge](https://github.com/mdrillin/openshift-cartridge-datavirtualization) provides the RedHat JBoss **DataVirtualization** components:
 
   - [Teiid](http://www.jboss.org/teiid/) - Data Virtualization system
   - [Modeshape](http://www.jboss.org/modeshape/) - Content Repository
-  - Dashboard Builder
+  - [Dashboard Builder](https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6/html/Administration_and_Configuration_Guide/chap-Dashboard_Builder_Technology_Preview.html) - interactive dashboard and report creation 
 
 ## Cartridge Installation
-For OpenShift Online, you will need a user account - [instructions here](https://openshift.redhat.com/app/getting_started)
+Create your free OpenShift user account - [instructions here](https://openshift.redhat.com/app/getting_started)
 
-To install the DataVirtualization cartridge to OpenShift via command line, enter this:
+Deploy the cartridge via the [OpenShift Web Console](https://openshift.redhat.com/app/console/applications) :
+
+At the bottom of the Applications page (Code Anything section), enter this for 'URL to cartridge definition':
 
 ```
-rhc app create [MYAPP] https://raw.github.com/mdrillin/openshift-cartridge-datavirtualization/master/metadata/manifest.yml
+https://raw.github.com/mdrillin/openshift-cartridge-datavirtualization/master/metadata/manifest.yml
+```
+ 
+Alternately, you can deploy the DataVirtualization cartridge via command line using this command:
+
+```
+rhc create-app [MYAPP] https://raw.github.com/mdrillin/openshift-cartridge-datavirtualization/master/metadata/manifest.yml
 ```
 
-Alternately, you can install the cartridge via the [OpenShift Web Console](https://openshift.redhat.com/app/console/applications)
-
-## Getting started with the DataVirtualization cartridge
-Once the cartridge installation has completed, enter this address to verify success
+## Getting started with Data Virtualization
+After the cartridge finishes deployment, enter this address to verify success
 
 * http://[MYAPP]-[MYDOMAIN].rhcloud.com
 
 ### Teiid Data Virtualization
-Two demo web applications are deployed with the Teiid OpenShift installation:
-
-* http://[MYAPP]-[MYDOMAIN].rhcloud.com/vdbmanager - 'VDBManager' application
-
-* http://[MYAPP]-[MYDOMAIN].rhcloud.com/webquery - 'WebQuery' application
-
-A series of [Demo Articles](https://community.jboss.org/wiki/TeiidOnOpenShiftDemo-Part1-SourceManagement) are also provided, which walk you through an integration example.
+A series of quick starts using JBoss Developer Studio will be published soon to help you get started.
 
 ### Modeshape Content Repository
 You can access Modeshape at
