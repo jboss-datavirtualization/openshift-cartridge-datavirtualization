@@ -51,7 +51,7 @@ Consult the [Modeshape Documentation](http://www.jboss.org/modeshape/) for more 
 ### Dashboard Builder
 Access the dashboard builder at the following address
 
-* http://[MYAPP]-[MYDOMAIN].rhcloud.com/dashbuilder
+* http://[MYAPP]-[MYDOMAIN].rhcloud.com/dashboard
 
 Two users are provided with the installation for testing
 
