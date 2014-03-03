@@ -20,7 +20,7 @@ cp ${OPENSHIFT_DV_DIR}/standalone/configuration/standalone.xml ${OPENSHIFT_DV_DI
 cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/CustomerRESTWebSvc.war ${OPENSHIFT_DV_DIR}/standalone/deployments/CustomerRESTWebSvc.war
 cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/datavirt-commons-idp-eap61-1.0.0.war ${OPENSHIFT_DV_DIR}/standalone/deployments/datavirt-commons-idp-eap61-1.0.0.war
 cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/datavirt-ui-eap61.war ${OPENSHIFT_DV_DIR}/standalone/deployments/datavirt-ui-eap61.war
-cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/teiid-dashboard-distribution-builder-1.0.0-redhat-1-jboss-as7.war ${OPENSHIFT_DV_DIR}/standalone/deployments/teiid-dashboard-distribution-builder-1.0.0-redhat-1-jboss-as7.war
+cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/teiid-dashboard-builder.war ${OPENSHIFT_DV_DIR}/standalone/deployments/teiid-dashboard-builder.war
 
 pushd $OPENSHIFT_DV_DIR/template/src/main/webapp
   jar cvf $OPENSHIFT_DV_DIR/standalone/deployments/ROOT.war ./*

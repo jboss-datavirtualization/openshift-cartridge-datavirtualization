@@ -297,7 +297,7 @@ function deploy() {
     cp CustomerRESTWebSvc.war $DV_DEPLOYMENTS_DIR
     cp datavirt-commons-idp-eap61-1.0.0.war $DV_DEPLOYMENTS_DIR
     cp datavirt-ui-eap61.war $DV_DEPLOYMENTS_DIR
-    cp teiid-dashboard-distribution-builder-1.0.0-redhat-1-jboss-as7.war $DV_DEPLOYMENTS_DIR
+    cp teiid-dashboard-builder.war $DV_DEPLOYMENTS_DIR
   popd
   pushd $OPENSHIFT_DV_DIR/template/src/main/webapp
     jar cvf $OPENSHIFT_DV_DIR/standalone/deployments/ROOT.war ./*
