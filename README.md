@@ -3,7 +3,7 @@
 ## Summary
 This cartridge provides the RedHat JBoss **_DataVirtualization Platform_** for easy deployment to OpenShift. 
 
-The [DataVirtualization Cartridge](https://github.com/mdrillin/openshift-cartridge-datavirtualization) provides the RedHat JBoss **DataVirtualization** components:
+The [DataVirtualization Cartridge](https://github.com/jboss-datavirtualization/openshift-cartridge-datavirtualization) provides the RedHat JBoss **DataVirtualization** components:
 
   - [Teiid](http://www.jboss.org/teiid/) - Data Virtualization system
   - [Modeshape](http://www.jboss.org/modeshape/) - Content Repository
@@ -17,13 +17,13 @@ Deploy the cartridge via the [OpenShift Web Console](https://openshift.redhat.co
 At the bottom of the Applications page (Code Anything section), enter this for 'URL to cartridge definition':
 
 ```
-https://raw.github.com/mdrillin/openshift-cartridge-datavirtualization/master/metadata/manifest.yml
+https://raw.github.com/jboss-datavirtualization/openshift-cartridge-datavirtualization/master/metadata/manifest.yml
 ```
  
 Alternately, you can deploy the DataVirtualization cartridge via command line using this command:
 
 ```
-rhc create-app [MYAPP] https://raw.github.com/mdrillin/openshift-cartridge-datavirtualization/master/metadata/manifest.yml
+rhc create-app [MYAPP] https://raw.github.com/jboss-datavirtualization/openshift-cartridge-datavirtualization/master/metadata/manifest.yml
 ```
 
 ## Getting started with Data Virtualization
