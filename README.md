@@ -32,7 +32,15 @@ After the cartridge finishes deployment, enter this address to verify success
 * http://[MYAPP]-[MYDOMAIN].rhcloud.com
 
 ### Teiid Data Virtualization
-A series of quick starts using JBoss Developer Studio will be published soon to help you get started.
+A few 'how-to' articles are available to help you get started:
+* [Provision Data Virtualization on OpenShift and Connect from Teiid Designer](https://community.jboss.org/wiki/ProvisionDataVirtualizationOnOpenShiftAndConnectFromTeiidDesigner)
+* [Salesforce as a REST Service using Data Virtualization](https://community.jboss.org/wiki/SalesforceAsARESTServiceUsingDataVirtualization)
+* [Any source as an OData feed using Data Virtualization](https://community.jboss.org/wiki/AnySourceAsAnODataFeedUsingDataVirtualization)
+
+A user is provided with the installation for testing
+* user/user - general user, granted odata and rest roles
+
+Consult the [Teiid Documentation](http://www.jboss.org/teiid/docs) for more information.
 
 ### Modeshape Content Repository
 You can access Modeshape at
@@ -58,7 +66,7 @@ Two users are provided with the installation for testing
 * dbadmin/dbadmin - dashboard admin user with edit capability
 * dbuser/dbuser - dashboard user with readonly capability
 
-More information regarding Dashboard Builder will be coming soon.
+Consult the [Dashboard Documentation](https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6/html/Administration_and_Configuration_Guide/chap-Dashboard_Builder_Technology_Preview.html) for more information.
 
 
 
