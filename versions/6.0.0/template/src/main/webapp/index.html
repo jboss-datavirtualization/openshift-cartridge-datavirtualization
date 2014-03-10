@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Welcome to OpenShift</title>
+  <title>Welcome to Data Virtualization on OpenShift</title>
   <style>
   html { 
   background: black; 
@@ -122,44 +122,42 @@
     <div class="brand-text"><strong>Open</strong>Shift</div>
   </a>
   <h1>
-    Welcome to the OpenShift DataVirtualization Cartridge
+    Welcome to the OpenShift Data Virtualization Cartridge
   </h1>
+
+<h2>Summary</h2>
+<p><strong>JBoss Data Virtualization</strong> provides the following components:
+  <ul>
+    <li><a href="http://www.jboss.org/teiid/">Teiid</a> - Data Virtualization system</li>
+    <li><a href="http://www.jboss.org/modeshape/">Modeshape</a> - Content Repository</li>
+    <li><a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6/html/Administration_and_Configuration_Guide/chap-Dashboard_Builder_Technology_Preview.html">Dashboard Builder</a> - interactive dashboard and report creation</li>
+  </ul>
+</p>
+
+<h2>Getting Started</h2>
+<p>Information about the Data Virtualization cartridge can be found on the <a href="https://github.com/jboss-datavirtualization/openshift-cartridge-datavirtualization">github repository home</a></p>
+<p>To get started using the Data Virtualization instance, see the following how-to articles:
+  <ul>
+    <li><a href="https://community.jboss.org/wiki/ProvisionDataVirtualizationOnOpenShiftAndConnectFromTeiidDesigner">Provision Data Virtualization and Connect from Teiid Designer</a> shows how to connect to the OpenShift Data Virtualization instance from JBoss Developer Studio - Teiid Designer</li>
+    <li><a href="https://community.jboss.org/wiki/SalesforceAsARESTServiceUsingDataVirtualization">Salesforce as a REST service using Data Virtualization</a> shows how to expose some of your Salesforce data as a REST service.</li>
+    <li><a href="https://community.jboss.org/wiki/AnySourceAsAnODataFeedUsingDataVirtualization">Any source as an OData feed using Data Virtualization</a> shows how you can expose a datasource as an OData feed in Data Virtualization</li>
+  </ul>
+</p>
+
+<h2>Deploy applications</h2>
+  <p>You can deploy your own applications to the OpenShift Data Virtualization instance</p>
   <p>
-    Place your application here
+    For example, you can clone the instance to your local directory:
   </p>
-  <p>
-    In order to commit to your new project, go to your projects git repo  (created with the rhc app create command) directory.
-  </p>
-  <p>
-    For example, if you named your application myfirstapp (by passing in -a myfirstapp to the rhc app create command),
-      you would find the contents of this app located under myfirstapp/src/main/webapp. You can edit that and push your
-      changes from the myfirstapp directory by running:
+  <pre>
+    git clone [openshiftUrl]
+  </pre>
+  <p>where [openshfitUrl] is obtained from the OpenShift web console.  You can then add or edit applications in the local git repo, then push the changes to OpenShift:
   </p>
   <pre>
     git commit -a -m 'Some commit message'
     git push
   </pre>
-  <p>
-    Then reload this page.
-  </p>
-  <p>See the myfirstapp/README file for more information on the options for deploying applications.</p>
-
-
-<h2>Sample Applications</h2>
-<p>To get started you can either modify the default war or try one of these samples:
-  <ul>
-    <li><a href="https://github.com/openshift/kitchensink-example">https://github.com/openshift/kitchensink-example</a> this quickstart showcases some of the exciting Java EE6 features available on JBoss AS 7.1.</li>
-    <li><a href="https://github.com/openshift/kitchensink-html5-mobile-example">https://github.com/openshift/kitchensink-html5-mobile-example</a> based on kitchensink (above), but with an HTML5 client that displays great on a PC or mobile device.</li>
-    <li><a href="https://github.com/openshift/tweetstream-example">https://github.com/openshift/tweetstream-example</a> a TweetStream example</li>
-  </ul>
-  
-  <h4>Example usage:</h4>
-  <pre>
-  cd kitchensink
-  git remote add upstream -m master git://github.com/openshift/kitchensink-example.git
-  git pull -s recursive -X theirs upstream master
-  </pre>
-</p>
 
 <h2>Debugging</h2>
 <p>View debugging information about the server environment including memory pools by loading this JSP page: <a href="snoop.jsp">Debug</a></p>
