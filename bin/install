@@ -1,6 +1,7 @@
 #!/bin/bash -eu
 
 source $OPENSHIFT_DV_DIR/bin/util
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
 case "$1" in
   -v|--version)
@@ -22,6 +23,8 @@ cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/datavirt-commo
 cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/datavirt-ui-eap61.war ${OPENSHIFT_DV_DIR}/standalone/deployments/datavirt-ui-eap61.war
 cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/teiid-dashboard-builder.war ${OPENSHIFT_DV_DIR}/standalone/deployments/teiid-dashboard-builder.war
 
+sed -i "s/{APP_NAME}/${OPENSHIFT_APP_NAME}/g" ${OPENSHIFT_DV_DIR}/template/pom.xml
+
 pushd $OPENSHIFT_DV_DIR/template/src/main/webapp
   jar cvf $OPENSHIFT_DV_DIR/standalone/deployments/ROOT.war ./*
 popd
@@ -31,6 +34,69 @@ pushd $OPENSHIFT_DV_DIR > /dev/null
   ln -s ${JBOSS_HOME}/jboss-modules.jar
   ln -s ${JBOSS_HOME}/modules
 popd 1> /dev/null
+
+# Set usernames, generate passwords and create env variables
+echo 'Generating username and password'
+
+teiiduser_username=user
+dbadmin_username=dbadmin
+msuser_username=msuser
+msadmin_username=msadmin
+teiiduser_password=$(generate_password)
+dbadmin_password=$(generate_password)
+msuser_password=$(generate_password)
+msadmin_password=$(generate_password)
+
+# env vars
+#
+echo "$teiiduser_username" > $OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_TEIIDUSER_USERNAME
+echo "$teiiduser_password" > $OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_TEIIDUSER_PASSWORD
+echo "$dbadmin_username" > $OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_DBADMIN_USERNAME
+echo "$dbadmin_password" > $OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_DBADMIN_PASSWORD
+echo "$msuser_username" > $OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_MSUSER_USERNAME
+echo "$msuser_password" > $OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_MSUSER_PASSWORD
+echo "$msadmin_username" > $OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_MSADMIN_USERNAME
+echo "$msadmin_password" > $OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_MSADMIN_PASSWORD
+
+# Create the teiid-security-users.properties file
+# ${OPENSHIFT_DV_DIR}/standalone/deployments
+echo "# username=password" > "${OPENSHIFT_DV_DIR}/standalone/configuration/teiid-security-users.properties"
+echo "${teiiduser_username}=${teiiduser_password}" >> "${OPENSHIFT_DV_DIR}/standalone/configuration/teiid-security-users.properties"
+echo "${dbadmin_username}=${dbadmin_password}" >> "${OPENSHIFT_DV_DIR}/standalone/configuration/teiid-security-users.properties"
+
+# Create the teiid-security-roles.properties file
+#
+echo "# username=role1,role2" > "${OPENSHIFT_DV_DIR}/standalone/configuration/teiid-security-roles.properties"
+echo "${teiiduser_username}=user,odata,rest" >> "${OPENSHIFT_DV_DIR}/standalone/configuration/teiid-security-roles.properties"
+echo "${dbadmin_username}=admin" >> "${OPENSHIFT_DV_DIR}/standalone/configuration/teiid-security-roles.properties"
+
+# Create the modeshape-users.properties file
+#
+echo "# username=password" > "${OPENSHIFT_DV_DIR}/standalone/configuration/modeshape-users.properties"
+echo "${msuser_username}=${msuser_password}" >> "${OPENSHIFT_DV_DIR}/standalone/configuration/modeshape-users.properties"
+echo "${msadmin_username}=${msadmin_password}" >> "${OPENSHIFT_DV_DIR}/standalone/configuration/modeshape-users.properties"
+
+# Create the modeshape-roles.properties file
+#
+echo "# username=role1,role2" > "${OPENSHIFT_DV_DIR}/standalone/configuration/modeshape-roles.properties"
+echo "${msuser_username}=connect, readonly" >> "${OPENSHIFT_DV_DIR}/standalone/configuration/modeshape-roles.properties"
+echo "${msadmin_username}=connect, admin, readonly, readwrite" >> "${OPENSHIFT_DV_DIR}/standalone/configuration/modeshape-roles.properties"
+
+client_result ""
+client_result "Data Virtualization ${version} cartridge installed.  Please make note of these credentials:"
+client_result ""
+client_result "              Teiid User: $teiiduser_username"
+client_result "     Teiid User Password: $teiiduser_password"
+client_result ""
+client_result "         Dashboard Admin: $dbadmin_username"
+client_result "Dashboard Admin Password: $dbadmin_password"
+client_result ""
+client_result "          Modeshape User: $msuser_username"
+client_result " Modeshape User Password: $msuser_password"
+client_result ""
+client_result "         Modeshape Admin: $msadmin_username"
+client_result "Modeshape Admin Password: $msadmin_password"
+client_result ""
 
 touch ${OPENSHIFT_DV_DIR}/env/OPENSHIFT_DV_CLUSTER
 touch ${OPENSHIFT_DV_DIR}/env/OPENSHIFT_DV_CLUSTER_REMOTING

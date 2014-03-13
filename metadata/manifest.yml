@@ -15,6 +15,7 @@ Categories:
 - java
 - jboss
 - java_ee_6
+- xpaas
 Website: http://www.jboss.org
 Help-Topics:
   Developer Center: https://www.openshift.com/developers
@@ -53,7 +54,7 @@ Subscribes:
     Type: ENV:NET_TCP:generic-java
 Scaling:
   Min: 1
-  Max: -1
+  Max: 1
 Group-Overrides:
   - components:
     - dv-6.0.0
