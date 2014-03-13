@@ -122,10 +122,11 @@
                 </datasource>
                 <datasource jndi-name="java:/datasources/ModeShapeDS" pool-name="ModeShapeDS" use-java-context="true">
                     <connection-url>jdbc:jcr:jndi:jcr?repositoryName=dv</connection-url>
+                    <connection-property name="teiidsupport">true</connection-property>
                     <driver>modeshape</driver>
                     <security>
-                        <user-name>admin</user-name>
-                        <password>admin</password>
+                        <user-name>${env.OPENSHIFT_DV_MSADMIN_USERNAME}</user-name>
+                        <password>${env.OPENSHIFT_DV_MSADMIN_PASSWORD}</password>
                     </security>
                 </datasource>
                 <drivers>
