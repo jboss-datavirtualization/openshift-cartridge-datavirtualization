@@ -28,26 +28,13 @@ function getscanconfig() {
     done
 }
 
-# Verify that the deployment scanner has finished running
+# Wait for deployments
 function waitondeployments() {
+
     if ! ismgmtup; then
       client_message "Timed out waiting for management listening port"
       client_message "Could not connect to JBoss management interface, skipping deployment verification"
     else 
-      SCANCONFIG=""
-      c=0
-      while [ "$SCANCONFIG" == "" ] && [ $c -lt 5 ]; do
-        getscanconfig
-        if [ "$SCANCONFIG" != "" ]; then
-          break
-        fi
-        sleep 2
-        let c=c+1
-      done
-
-      if [ "$SCANCONFIG" == "" ]; then
-        client_message "Could not connect to JBoss management interface, skipping deployment verification"
-      elif [[ $SCANCONFIG =~ '"scan-enabled" => true' ]]; then
         pushd $DV_DEPLOYMENTS_DIR
 
         artifacts=()
@@ -55,14 +42,9 @@ function waitondeployments() {
           artifacts+=("$REPLY")
         done < <(find . -iregex '.*\.\([ejrsw]ar\|zip\)$' -print0)
 
-        deployexploded=false
-        if [[ $SCANCONFIG =~ '"auto-deploy-exploded" => true' ]]; then
-          deployexploded=true
-        fi
-        deployarchive=false
-        if [[ $SCANCONFIG =~ '"auto-deploy-zipped" => true' ]]; then
-          deployarchive=true
-        fi 
+	# Deploy archive and exploded
+        deployexploded=true
+        deployarchive=true
 
         artifactsdeployed=()
         artifactsfailed=()
@@ -72,8 +54,7 @@ function waitondeployments() {
           if ( [ -f $artifact ] && $deployarchive ) || ( [ -d $artifact ] && $deployexploded ); then         
             # TODO triple check this logic, add a timeout 
             while [ -f ${artifact}.isdeploying ]; do
-              client_message "Artifact: ${artifact} is still deploying"
-              sleep 10
+              sleep 8
             done
 
             if [ -f ${artifact}.deployed ]; then
@@ -107,9 +88,6 @@ function waitondeployments() {
         if [ ${#artifactsunknown[@]} -gt 0 ]; then
           echo "Artifacts in an unknown state: ${artifactsunknown[*]}"
         fi
-      else
-          echo "Deployment scanner disabled, skipping deployment verification"
-      fi
     fi
 }
 
