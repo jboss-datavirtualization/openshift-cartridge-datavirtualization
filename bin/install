@@ -79,8 +79,8 @@ echo "${msadmin_username}=${msadmin_password}" >> "${OPENSHIFT_DV_DIR}/standalon
 # Create the modeshape-roles.properties file
 #
 echo "# username=role1,role2" > "${OPENSHIFT_DV_DIR}/standalone/configuration/modeshape-roles.properties"
-echo "${msuser_username}=connect, readonly" >> "${OPENSHIFT_DV_DIR}/standalone/configuration/modeshape-roles.properties"
-echo "${msadmin_username}=connect, admin, readonly, readwrite" >> "${OPENSHIFT_DV_DIR}/standalone/configuration/modeshape-roles.properties"
+echo "${msuser_username}=connect,readonly" >> "${OPENSHIFT_DV_DIR}/standalone/configuration/modeshape-roles.properties"
+echo "${msadmin_username}=connect,admin,readonly,readwrite" >> "${OPENSHIFT_DV_DIR}/standalone/configuration/modeshape-roles.properties"
 
 client_result ""
 client_result "Data Virtualization ${version} cartridge installed.  Please make note of these credentials:"
