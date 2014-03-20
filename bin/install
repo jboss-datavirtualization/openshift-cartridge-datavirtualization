@@ -18,9 +18,6 @@ mv ${OPENSHIFT_DV_DIR}/versions/${version}/share/* ${OPENSHIFT_DV_DIR}/share
 mv ${OPENSHIFT_DV_DIR}/versions/${version}/jboss/modules ${OPENSHIFT_DV_DIR}/jboss
 mv ${OPENSHIFT_DV_DIR}/versions/${version}/jboss/jboss-modules.jar ${OPENSHIFT_DV_DIR}/jboss
 cp ${OPENSHIFT_DV_DIR}/standalone/configuration/standalone.xml ${OPENSHIFT_DV_DIR}/template/.openshift/config
-cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/CustomerRESTWebSvc.war ${OPENSHIFT_DV_DIR}/standalone/deployments/CustomerRESTWebSvc.war
-cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/datavirt-commons-idp-eap61-1.0.0.war ${OPENSHIFT_DV_DIR}/standalone/deployments/datavirt-commons-idp-eap61-1.0.0.war
-cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/datavirt-ui-eap61.war ${OPENSHIFT_DV_DIR}/standalone/deployments/datavirt-ui-eap61.war
 cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/teiid-dashboard-builder.war ${OPENSHIFT_DV_DIR}/standalone/deployments/teiid-dashboard-builder.war
 
 sed -i "s/{APP_NAME}/${OPENSHIFT_APP_NAME}/g" ${OPENSHIFT_DV_DIR}/template/pom.xml
