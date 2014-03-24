@@ -312,10 +312,6 @@ function stop() {
   echo "Stopping $cartridge_type cartridge"
 
   if isrunning; then
-           # copy standalone.xml to repo, so state is saved on restart
-           if [ -f "${OPENSHIFT_DV_DIR}/standalone/configuration/standalone.xml" ]; then
-              cp -f ${OPENSHIFT_DV_DIR}/standalone/configuration/standalone.xml ${OPENSHIFT_REPO_DIR}/.openshift/config/standalone.xml
-           fi
 		if [ -f "$DV_PID_FILE" ]; then
 			pid=$(cat $DV_PID_FILE);
 	    echo "Sending SIGTERM to jboss:$pid ..." 1>&2

@@ -32,6 +32,10 @@ pushd $OPENSHIFT_DV_DIR > /dev/null
   ln -s ${JBOSS_HOME}/modules
 popd 1> /dev/null
 
+# Disable Openshift management
+disableManaged=true
+echo "$disableManaged" > $OPENSHIFT_DV_DIR/env/DISABLE_OPENSHIFT_MANAGED_SERVER_CONFIG
+
 # Set usernames, generate passwords and create env variables
 echo 'Generating username and password'
 
