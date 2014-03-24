@@ -1,0 +1,18 @@
+---
+locked_files:
+- bin/
+- bin/*
+- tools/
+- tools/*
+- metadata/
+- metadata/*
+- hooks/
+- hooks/*
+- env/
+- env/OPENSHIFT_JBOSSAS_DIR
+- env/OPENSHIFT_JBOSSAS_LOG_DIR
+- env/OPENSHIFT_JBOSSAS_JDK*
+- env/OPENSHIFT_JBOSSAS_VERSION
+- env/M2_HOME
+- template/
+- jboss_cfg_backup/
