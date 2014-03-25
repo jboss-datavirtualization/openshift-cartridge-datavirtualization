@@ -33,8 +33,7 @@ pushd $OPENSHIFT_DV_DIR > /dev/null
 popd 1> /dev/null
 
 # Disable Openshift management
-disableManaged=true
-echo "$disableManaged" > $OPENSHIFT_DV_DIR/env/DISABLE_OPENSHIFT_MANAGED_SERVER_CONFIG
+set_env_var DISABLE_OPENSHIFT_MANAGED_SERVER_CONFIG true ~/.env/user_vars
 
 # Set usernames, generate passwords and create env variables
 echo 'Generating username and password'
