@@ -274,9 +274,6 @@ function deploy() {
   pushd $OPENSHIFT_DV_DIR/versions/$dv_version/standalone/deployments
     cp teiid-dashboard-builder.war $DV_DEPLOYMENTS_DIR
   popd
-  pushd $OPENSHIFT_DV_DIR/template/src/main/webapp
-    jar cvf $OPENSHIFT_DV_DIR/standalone/deployments/ROOT.war ./*
-  popd
 }
 
 function start() {
