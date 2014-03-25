@@ -129,6 +129,44 @@
                         <password>${env.OPENSHIFT_DV_MSADMIN_PASSWORD}</password>
                     </security>
                 </datasource>
+                <datasource jndi-name="java:jboss/datasources/MySQLDS" enabled="false" use-java-context="true" pool-name="MySQLDS" use-ccm="true">
+                    <connection-url>jdbc:mysql://${env.OPENSHIFT_MYSQL_DB_HOST}:${env.OPENSHIFT_MYSQL_DB_PORT}/jbosseap
+                    </connection-url>
+                    <driver>mysql</driver>
+                    <security>
+                        <user-name>${env.OPENSHIFT_MYSQL_DB_USERNAME}</user-name>
+                        <password>${env.OPENSHIFT_MYSQL_DB_PASSWORD}</password>
+                    </security>
+                    <validation>
+                        <check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+                        <background-validation>true</background-validation>
+                        <background-validation-millis>60000</background-validation-millis>
+                        <!--<validate-on-match>true</validate-on-match>-->
+                    </validation>
+                    <pool>
+                        <flush-strategy>IdleConnections</flush-strategy>
+                        <allow-multiple-users/>
+                    </pool>
+                </datasource>
+                <datasource jndi-name="java:jboss/datasources/PostgreSQLDS" enabled="false" use-java-context="true" pool-name="PostgreSQLDS" use-ccm="true">
+                    <connection-url>jdbc:postgresql://${env.OPENSHIFT_POSTGRESQL_DB_HOST}:${env.OPENSHIFT_POSTGRESQL_DB_PORT}/jbosseap
+                    </connection-url>
+                    <driver>postgresql</driver>
+                    <security>
+                        <user-name>${env.OPENSHIFT_POSTGRESQL_DB_USERNAME}</user-name>
+                        <password>${env.OPENSHIFT_POSTGRESQL_DB_PASSWORD}</password>
+                    </security>
+                    <validation>
+                        <check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+                        <background-validation>true</background-validation>
+                        <background-validation-millis>60000</background-validation-millis>
+                        <!--<validate-on-match>true</validate-on-match>-->
+                    </validation>
+                    <pool>
+                        <flush-strategy>IdleConnections</flush-strategy>
+                        <allow-multiple-users/>
+                    </pool>
+                </datasource>
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
@@ -143,6 +181,14 @@
 		    </driver> 
                     <driver name="modeshape" module="org.modeshape.jdbc">
                         <driver-class>org.modeshape.jdbc.LocalJcrDriver</driver-class>
+                    </driver>
+                    <driver name="mysql" module="com.mysql.jdbc">
+                        <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
+                        </xa-datasource-class>
+                    </driver>
+                    <driver name="postgresql" module="org.postgresql.jdbc">
+                        <xa-datasource-class>org.postgresql.xa.PGXADataSource
+                        </xa-datasource-class>
                     </driver>
                 </drivers>
             </datasources>
