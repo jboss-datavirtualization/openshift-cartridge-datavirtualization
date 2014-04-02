@@ -273,6 +273,8 @@ function deploy() {
   # copy standard dv default wars to deployments
   pushd $OPENSHIFT_DV_DIR/versions/$dv_version/standalone/deployments
     cp teiid-dashboard-builder.war $DV_DEPLOYMENTS_DIR
+    cp datavirt-commons-idp-eap61-1.0.0.war $DV_DEPLOYMENTS_DIR
+    cp datavirt-ui-eap61.war $DV_DEPLOYMENTS_DIR
   popd
 }
 
