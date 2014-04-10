@@ -129,7 +129,7 @@
                         <password>${env.OPENSHIFT_DV_MSADMIN_PASSWORD}</password>
                     </security>
                 </datasource>
-                <datasource jndi-name="java:jboss/datasources/MySQLDS" enabled="${mysql.enabled}" use-java-context="true" pool-name="MySQLDS" use-ccm="true">
+                <datasource jndi-name="java:jboss/datasources/MySQLDS" enabled="true" use-java-context="true" pool-name="MySQLDS" use-ccm="true">
                     <connection-url>jdbc:mysql://${env.OPENSHIFT_MYSQL_DB_HOST}:${env.OPENSHIFT_MYSQL_DB_PORT}/${env.OPENSHIFT_APP_NAME}
                     </connection-url>
                     <driver>mysql</driver>
@@ -150,7 +150,7 @@
                         <allow-multiple-users/>
                     </pool>
                 </datasource>
-                <datasource jndi-name="java:jboss/datasources/PostgreSQLDS" enabled="${postgresql.enabled}" use-java-context="true" pool-name="PostgreSQLDS" use-ccm="true">
+                <datasource jndi-name="java:jboss/datasources/PostgreSQLDS" enabled="true" use-java-context="true" pool-name="PostgreSQLDS" use-ccm="true">
                     <connection-url>jdbc:postgresql://${env.OPENSHIFT_POSTGRESQL_DB_HOST}:${env.OPENSHIFT_POSTGRESQL_DB_PORT}/${env.OPENSHIFT_APP_NAME}
                     </connection-url>
                     <driver>postgresql</driver>
