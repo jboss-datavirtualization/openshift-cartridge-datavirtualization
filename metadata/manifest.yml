@@ -8,7 +8,7 @@ License-Url: http://www.gnu.org/copyleft/lesser.txt
 Vendor: Red Hat
 Cartridge-Version: 0.0.1
 Cartridge-Vendor: jboss
-Source-Url: https://github.com/jboss-datavirtualization/openshift-cartridge-datavirtualization.git
+Source-Url: https://github.com/jboss-datavirtualization/openshift-cartridge-datavirtualization/archive/6.0.0.zip
 Categories:
 - service
 - web_framework
