@@ -12,22 +12,16 @@ The [DataVirtualization Cartridge](https://github.com/jboss-datavirtualization/o
 ## Cartridge Installation
 Create your free OpenShift user account - [instructions here](https://openshift.redhat.com/app/getting_started)
 
-Deploy the cartridge via the [OpenShift Web Console](https://openshift.redhat.com/app/console/applications) :
-
-At the bottom of the Applications page (Code Anything section), enter this for 'URL to cartridge definition':
-
-```
-https://raw.github.com/jboss-datavirtualization/openshift-cartridge-datavirtualization/current/metadata/manifest.yml
-```
+Deploy the cartridge via the [OpenShift Web Console](https://openshift.redhat.com/app/console/applications) .  On the Applications tab, choose 'Add Application...' - then select the 'JBoss Data Virtualization 6' cartridge under the xPaaS section.  Full [installation instructions](https://community.jboss.org/wiki/ProvisionDataVirtualizationOnOpenShift) are provided.
  
-Alternately, you can deploy the DataVirtualization cartridge via command line using this command:
+Alternately, if you have the OpenShift command line tools installed, you can deploy the DataVirtualization cartridge via command line:
 
 ```
-rhc create-app [MYAPP] https://raw.github.com/jboss-datavirtualization/openshift-cartridge-datavirtualization/current/metadata/manifest.yml
+rhc app-create <myApp> jboss-dv-6.0.0
 ```
 
 When the installation completes, you will be presented with a list of generated users and passwords similar to the screencap below.  Make sure you save them!
-![installation users](https://github.com/jboss-datavirtualization/openshift-cartridge-datavirtualization/raw/master/InstallationUsers.png)
+![installation users](https://github.com/jboss-datavirtualization/openshift-cartridge-datavirtualization/raw/6.0.0/InstallationUsers.png)
 
 ## Getting started with Data Virtualization
 After the cartridge finishes deployment, enter this address to verify success
@@ -39,6 +33,8 @@ A few 'how-to' articles are available to help you get started:
 * [Provision Data Virtualization on OpenShift and Connect from Teiid Designer](https://community.jboss.org/wiki/ProvisionDataVirtualizationOnOpenShiftAndConnectFromTeiidDesigner)
 * [Salesforce as a REST Service using Data Virtualization](https://community.jboss.org/wiki/SalesforceAsARESTServiceUsingDataVirtualization)
 * [Any source as an OData feed using Data Virtualization](https://community.jboss.org/wiki/AnySourceAsAnODataFeedUsingDataVirtualization)
+* [Add a MySQL database to your OpenShift Data Virtualization instance](https://community.jboss.org/wiki/AddAMySQLDatabaseToYourOpenShiftDataVirtualizationInstance)
+* [Utilize the MySQL database on OpenShift Data Virtualization in Designer](https://community.jboss.org/wiki/UtilizeTheMySQLDatabaseOnOpenShiftDataVirtualizationInDesigner)
 
 A teiid user is generated with the installation.  It is granted the user, odata and rest roles.
 * user,  {generated password}
@@ -67,4 +63,5 @@ A dashboard admin is generated with the installation.  (The teiid 'user' is allo
 * dbadmin, {generated password)
 
 Consult the [Dashboard Documentation](https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6/html/Administration_and_Configuration_Guide/chap-Dashboard_Builder_Technology_Preview.html) for more information.
+
 
