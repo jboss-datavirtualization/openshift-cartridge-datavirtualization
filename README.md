@@ -7,7 +7,7 @@ The [DataVirtualization Cartridge](https://github.com/jboss-datavirtualization/o
 
   - [Teiid](http://www.jboss.org/teiid/) - Data Virtualization system
   - [Modeshape](http://www.jboss.org/modeshape/) - Content Repository
-  - [Dashboard Builder](https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6/html/Administration_and_Configuration_Guide/chap-Dashboard_Builder_Technology_Preview.html) - interactive dashboard and report creation 
+  - [Dashboard Builder](https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6/html/Administration_and_Configuration_Guide/chap-Dashboard_Builder.html) - interactive dashboard and report creation 
 
 ## Cartridge Installation
 Create your free OpenShift user account - [instructions here](https://openshift.redhat.com/app/getting_started)
