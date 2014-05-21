@@ -102,6 +102,15 @@ client_result "         Modeshape Admin: $msadmin_username"
 client_result "Modeshape Admin Password: $msadmin_password"
 client_result ""
 
+cart_props "teiid_username=$teiiduser_username"
+cart_props "teiid_password=$teiiduser_password"
+cart_props "dashboard_admin_username=$dbadmin_username"
+cart_props "dashboard_admin_password=$dbadmin_password"
+cart_props "modeshape_user_username=$msuser_username"
+cart_props "modeshape_user_password=$msuser_password"
+cart_props "modeshape_admin_username=$msadmin_username"
+cart_props "modeshape_admin_password=$msadmin_password"
+
 touch ${OPENSHIFT_DV_DIR}/env/OPENSHIFT_DV_CLUSTER
 touch ${OPENSHIFT_DV_DIR}/env/OPENSHIFT_DV_CLUSTER_REMOTING
 
