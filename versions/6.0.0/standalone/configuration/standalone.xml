@@ -129,7 +129,7 @@
                         <password>${env.OPENSHIFT_DV_MSADMIN_PASSWORD}</password>
                     </security>
                 </datasource>
-                <datasource jndi-name="java:jboss/datasources/MySQLDS" enabled="${mysql.enabled}" use-java-context="true" pool-name="MySQLDS" use-ccm="true">
+                <datasource jndi-name="java:jboss/datasources/MySQLDS" enabled="true" use-java-context="true" pool-name="MySQLDS" use-ccm="true">
                     <connection-url>jdbc:mysql://${env.OPENSHIFT_MYSQL_DB_HOST}:${env.OPENSHIFT_MYSQL_DB_PORT}/${env.OPENSHIFT_APP_NAME}
                     </connection-url>
                     <driver>mysql</driver>
@@ -144,11 +144,13 @@
                         <!--<validate-on-match>true</validate-on-match>-->
                     </validation>
                     <pool>
+                        <min-pool-size>0</min-pool-size>   
+                        <max-pool-size>10</max-pool-size>                  
                         <flush-strategy>IdleConnections</flush-strategy>
                         <allow-multiple-users/>
                     </pool>
                 </datasource>
-                <datasource jndi-name="java:jboss/datasources/PostgreSQLDS" enabled="${postgresql.enabled}" use-java-context="true" pool-name="PostgreSQLDS" use-ccm="true">
+                <datasource jndi-name="java:jboss/datasources/PostgreSQLDS" enabled="true" use-java-context="true" pool-name="PostgreSQLDS" use-ccm="true">
                     <connection-url>jdbc:postgresql://${env.OPENSHIFT_POSTGRESQL_DB_HOST}:${env.OPENSHIFT_POSTGRESQL_DB_PORT}/${env.OPENSHIFT_APP_NAME}
                     </connection-url>
                     <driver>postgresql</driver>
@@ -163,6 +165,8 @@
                         <!--<validate-on-match>true</validate-on-match>-->
                     </validation>
                     <pool>
+                        <min-pool-size>0</min-pool-size>   
+                        <max-pool-size>10</max-pool-size>                  
                         <flush-strategy>IdleConnections</flush-strategy>
                         <allow-multiple-users/>
                     </pool>
