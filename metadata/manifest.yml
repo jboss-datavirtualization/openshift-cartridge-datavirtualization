@@ -19,6 +19,31 @@ Categories:
 Website: http://www.jboss.org
 Help-Topics:
   Developer Center: https://www.openshift.com/developers
+Cart-Data:
+- Key: teiid_username
+  Type: cart_data
+  Description: Teiid username
+- Key: teiid_password
+  Type: cart_data
+  Description: Teiid password
+- Key: dashboard_admin_username
+  Type: cart_data
+  Description: Dashboard Admin username
+- Key: dashboard_admin_password
+  Type: cart_data
+  Description: Dashboard Admin password
+- Key: modeshape_user_username
+  Type: cart_data
+  Description: Modeshape User username
+- Key: modeshape_user_password
+  Type: cart_data
+  Description: Modeshape User password
+- Key: modeshape_admin_username
+  Type: cart_data
+  Description: Modeshape Admin username
+- Key: modeshape_admin_password
+  Type: cart_data
+  Description: Modeshape Admin password
 Provides:
   - dv-6.0.0
   - "dv"
