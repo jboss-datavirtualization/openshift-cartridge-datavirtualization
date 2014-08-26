@@ -147,7 +147,7 @@ function ishttpup() {
     count=0
     while [ ${count} -lt 64 ]
     do
-        if /usr/sbin/lsof -P -n -i "@${OPENSHIFT_DV_IP}:${OPENSHIFT_DV_HTTP_PORT}" | grep "(LISTEN)" > /dev/null; then
+        if echo 2> /dev/null > "/dev/tcp/${OPENSHIFT_DV_IP}/${OPENSHIFT_DV_HTTP_PORT}"; then
             echo "Found ${OPENSHIFT_DV_IP}:${OPENSHIFT_DV_HTTP_PORT} listening port"
             return 0
         fi
@@ -170,7 +170,7 @@ function ismgmtup() {
     let count=0
     while [ ${count} -lt 10 ]
     do
-        if /usr/sbin/lsof -P -n -i "@${OPENSHIFT_DV_IP}:${OPENSHIFT_DV_MANAGEMENT_NATIVE_PORT}" | grep "(LISTEN)" > /dev/null; then
+        if echo 2> /dev/null > "/dev/tcp/${OPENSHIFT_DV_IP}/${OPENSHIFT_DV_MANAGEMENT_NATIVE_PORT}"; then
             echo "Found ${OPENSHIFT_DV_IP}:${OPENSHIFT_DV_MANAGEMENT_NATIVE_PORT} listening port"
             return 0
         fi
