@@ -2,13 +2,13 @@ Name: dv
 Cartridge-Short-Name: DV
 Display-Name: JBoss Data Virtualization 6
 Description: A complete data provisioning, federation, integration and management solution that enables organizations to gain actionable and unified information.
-Version: '6.0.0'
+Version: '6.1.0'
 License: LGPL
 License-Url: http://www.gnu.org/copyleft/lesser.txt
 Vendor: Red Hat
 Cartridge-Version: 0.0.1
 Cartridge-Vendor: jboss
-Source-Url: https://github.com/jboss-datavirtualization/openshift-cartridge-datavirtualization.git
+Source-Url: https://github.com/mdrillin/openshift-cartridge-datavirtualization/archive/6.1.0.zip
 Categories:
 - service
 - web_framework
@@ -45,10 +45,10 @@ Cart-Data:
   Type: cart_data
   Description: Modeshape Admin password
 Provides:
-  - dv-6.0.0
+  - dv-6.1.0
   - "dv"
-  - "dv(version) = 6.0.0"
-  - "dv(version) >= 6.0.0"
+  - "dv(version) = 6.1.0"
+  - "dv(version) >= 6.1.0"
 Publishes:
   publish-jboss-cluster:
     Type: NET_TCP:dv-cluster-info
@@ -82,7 +82,7 @@ Scaling:
   Max: 1
 Group-Overrides:
   - components:
-    - dv-6.0.0
+    - dv-6.1.0
     - web_proxy
 Endpoints:
 - Private-IP-Name: IP

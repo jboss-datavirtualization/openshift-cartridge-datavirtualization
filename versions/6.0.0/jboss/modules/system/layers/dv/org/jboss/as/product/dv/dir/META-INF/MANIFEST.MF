@@ -1,3 +1,0 @@
-JBoss-Product-Release-Name: Red Hat JBoss Data Virtualization
-JBoss-Product-Release-Version: 6.0.0.GA-redhat-2
-JBoss-Product-Console-Slot: eap
