@@ -1,0 +1,19 @@
+<module xmlns="urn:jboss:module:1.1" name="org.apache.solr">
+   
+    <resources>
+        <resource-root path="solr-solrj-4.6.0.jar"/>
+        <resource-root path="noggit-0.5.jar"/>
+    </resources>
+
+    <dependencies>
+        <module name="javax.api"/>
+        <module name="org.slf4j"/>
+        <module name="org.apache.log4j"/>
+        <module name="org.apache.commons.configuration"/>
+        <module name="org.apache.commons.logging"/>
+        <module name="org.apache.commons.io"/>
+        <module name="org.apache.zookeeper" />
+        <module name="org.apache.httpcomponents" />
+        <module name="org.codehaus.woodstox"/>
+    </dependencies>
+</module>

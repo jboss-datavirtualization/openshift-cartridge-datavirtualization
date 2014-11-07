@@ -10,7 +10,7 @@ SCANCONFIG=""
 source $DV_BIN_DIR/util
 
 cartridge_type="dv"
-dv_version="6.0.0"
+dv_version="6.1.0"
 
 # Return the deployment-scanner configuration
 function getscanconfig() {
@@ -273,8 +273,7 @@ function deploy() {
   # copy standard dv default wars to deployments
   pushd $OPENSHIFT_DV_DIR/versions/$dv_version/standalone/deployments
     cp teiid-dashboard-builder.war $DV_DEPLOYMENTS_DIR
-    cp datavirt-commons-idp-eap61-1.0.0.war $DV_DEPLOYMENTS_DIR
-    cp datavirt-ui-eap61.war $DV_DEPLOYMENTS_DIR
+    cp PREVIEW-ServiceMgr-DV6-07Nov2014.war $DV_DEPLOYMENTS_DIR
     cp ModeShape.vdb $DV_DEPLOYMENTS_DIR
     cp ModeShape.vdb.dodeploy $DV_DEPLOYMENTS_DIR
   popd
