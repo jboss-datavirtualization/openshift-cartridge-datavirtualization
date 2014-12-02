@@ -273,7 +273,7 @@ function deploy() {
   # copy standard dv default wars to deployments
   pushd $OPENSHIFT_DV_DIR/versions/$dv_version/standalone/deployments
     cp teiid-dashboard-builder.war $DV_DEPLOYMENTS_DIR
-    cp PREVIEW-ServiceMgr-DV6-07Nov2014.war $DV_DEPLOYMENTS_DIR
+    cp PREVIEW-TeiidWeb-DV6-02Dec2014.war $DV_DEPLOYMENTS_DIR
     cp ModeShape.vdb $DV_DEPLOYMENTS_DIR
     cp ModeShape.vdb.dodeploy $DV_DEPLOYMENTS_DIR
   popd
