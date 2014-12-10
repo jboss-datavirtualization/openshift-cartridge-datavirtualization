@@ -30,6 +30,7 @@ After the cartridge finishes deployment, enter this address to verify success
 
 ### Teiid Data Virtualization
 A few 'how-to' articles are available to help you get started:
+* [Intro to the Data Virtualization Web Interface](https://developer.jboss.org/wiki/IntroToTheDataVirtualizationWebInterfaceOnOpenShift)
 * [Provision Data Virtualization on OpenShift and Connect from Teiid Designer](https://community.jboss.org/wiki/ProvisionDataVirtualizationOnOpenShiftAndConnectFromTeiidDesigner)
 * [Salesforce as a REST Service using Data Virtualization](https://community.jboss.org/wiki/SalesforceAsARESTServiceUsingDataVirtualization)
 * [Any source as an OData feed using Data Virtualization](https://community.jboss.org/wiki/AnySourceAsAnODataFeedUsingDataVirtualization)
