@@ -28,9 +28,9 @@
     </properties>
 
     <resources>
-        <resource-root path="ironjacamar-common-api-1.0.26.Final-redhat-1.jar"/>
-        <resource-root path="ironjacamar-common-spi-1.0.26.Final-redhat-1.jar"/>
-        <resource-root path="ironjacamar-core-api-1.0.26.Final-redhat-1.jar"/>
+        <resource-root path="ironjacamar-common-api-1.0.28.Final-redhat-1.jar"/>
+        <resource-root path="ironjacamar-common-spi-1.0.28.Final-redhat-1.jar"/>
+        <resource-root path="ironjacamar-core-api-1.0.28.Final-redhat-1.jar"/>
         <!-- Insert resources here -->
     </resources>
 

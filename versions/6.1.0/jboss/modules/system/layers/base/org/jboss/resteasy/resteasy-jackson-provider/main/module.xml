@@ -25,7 +25,7 @@
 <module xmlns="urn:jboss:module:1.1" name="org.jboss.resteasy.resteasy-jackson-provider">
 
     <resources>
-        <resource-root path="resteasy-jackson-provider-2.3.8.Final-redhat-3.jar"/>
+        <resource-root path="resteasy-jackson-provider-2.3.8.SP3-redhat-2.jar"/>
         <!-- Insert resources here -->
     </resources>
 

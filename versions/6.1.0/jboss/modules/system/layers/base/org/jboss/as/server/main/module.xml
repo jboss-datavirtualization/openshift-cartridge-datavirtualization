@@ -30,7 +30,7 @@
     <main-class name="org.jboss.as.server.DomainServerMain"/>
 
     <resources>
-        <resource-root path="jboss-as-server-7.4.0.Final-redhat-19.jar"/>
+        <resource-root path="jboss-as-server-7.4.2.Final-redhat-2.jar"/>
         <!-- Insert resources here -->
     </resources>
 

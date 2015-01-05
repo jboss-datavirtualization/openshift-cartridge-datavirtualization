@@ -28,8 +28,8 @@
     </properties>
 
     <resources>
-        <resource-root path="jboss-as-webservices-server-integration-7.4.0.Final-redhat-19.jar"/>
-        <resource-root path="jbossws-cxf-resources-4.3.0.Final-redhat-3-jboss720.jar"/>
+        <resource-root path="jboss-as-webservices-server-integration-7.4.2.Final-redhat-2.jar"/>
+        <resource-root path="jbossws-cxf-resources-4.3.1.Final-redhat-1-jboss720.jar"/>
         <!-- Insert resources here -->
     </resources>
 

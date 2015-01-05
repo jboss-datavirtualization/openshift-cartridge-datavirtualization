@@ -28,7 +28,7 @@
     </properties>
 
     <resources>
-        <resource-root path="xnio-nio-3.0.10.GA-redhat-1.jar"/>
+        <resource-root path="xnio-nio-3.0.11.GA-redhat-2.jar"/>
         <!-- Insert resources here -->
     </resources>
 

@@ -28,7 +28,7 @@
     </properties>
 
     <resources>
-        <resource-root path="xmlsec-1.5.6.redhat-1.jar"/>
+        <resource-root path="xmlsec-1.5.7.redhat-1.jar"/>
         <!-- Insert resources here -->
     </resources>
 

@@ -22,7 +22,7 @@
   -->
 <module xmlns="urn:jboss:module:1.2" name="org.modeshape.sequencer.sramp">
     <resources>
-        <resource-root path="modeshape-sequencer-sramp-3.8.1.GA-redhat-4.jar" />
+        <resource-root path="modeshape-sequencer-sramp-3.8.2.GA-redhat-1.jar" />
     </resources>
 
     <dependencies>

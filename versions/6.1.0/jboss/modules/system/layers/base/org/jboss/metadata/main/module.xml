@@ -28,11 +28,11 @@
     </properties>
 
     <resources>
-        <resource-root path="jboss-metadata-common-7.1.0.Final-redhat-1.jar"/>
-        <resource-root path="jboss-metadata-appclient-7.1.0.Final-redhat-1.jar"/>
-        <resource-root path="jboss-metadata-ejb-7.1.0.Final-redhat-1.jar"/>
-        <resource-root path="jboss-metadata-web-7.1.0.Final-redhat-1.jar"/>
-        <resource-root path="jboss-metadata-ear-7.1.0.Final-redhat-1.jar"/>
+        <resource-root path="jboss-metadata-common-7.1.2.Final-redhat-1.jar"/>
+        <resource-root path="jboss-metadata-appclient-7.1.2.Final-redhat-1.jar"/>
+        <resource-root path="jboss-metadata-ejb-7.1.2.Final-redhat-1.jar"/>
+        <resource-root path="jboss-metadata-web-7.1.2.Final-redhat-1.jar"/>
+        <resource-root path="jboss-metadata-ear-7.1.2.Final-redhat-1.jar"/>
         <!-- Insert resources here -->
     </resources>
 

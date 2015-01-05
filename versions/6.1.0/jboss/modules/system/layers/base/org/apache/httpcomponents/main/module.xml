@@ -28,9 +28,9 @@
     </properties>
 
     <resources>
-        <resource-root path="httpclient-4.2.1-redhat-1.jar"/>
-        <resource-root path="httpcore-4.2.1-redhat-1.jar"/>
-        <resource-root path="httpmime-4.2.1-redhat-1.jar"/>
+        <resource-root path="httpclient-4.2.6.redhat-3.jar"/>
+        <resource-root path="httpcore-4.2.5.redhat-3.jar"/>
+        <resource-root path="httpmime-4.2.6.redhat-3.jar"/>
         <!-- Insert resources here -->
     </resources>
 

@@ -28,10 +28,10 @@
     </properties>
 
     <resources>
-        <resource-root path="ironjacamar-common-impl-1.0.26.Final-redhat-1.jar"/>
-        <resource-root path="ironjacamar-core-impl-1.0.26.Final-redhat-1.jar"/>
-        <resource-root path="ironjacamar-deployers-common-1.0.26.Final-redhat-1.jar"/>
-        <resource-root path="ironjacamar-validator-1.0.26.Final-redhat-1.jar"/>
+        <resource-root path="ironjacamar-common-impl-1.0.28.Final-redhat-1.jar"/>
+        <resource-root path="ironjacamar-core-impl-1.0.28.Final-redhat-1.jar"/>
+        <resource-root path="ironjacamar-deployers-common-1.0.28.Final-redhat-1.jar"/>
+        <resource-root path="ironjacamar-validator-1.0.28.Final-redhat-1.jar"/>
         <!-- Insert resources here -->
     </resources>
 

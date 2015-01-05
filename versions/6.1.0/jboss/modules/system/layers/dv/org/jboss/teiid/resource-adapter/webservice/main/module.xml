@@ -1,12 +1,13 @@
 <module xmlns="urn:jboss:module:1.1" name="org.jboss.teiid.resource-adapter.webservice">
 
     <resources>
-        <resource-root path="connector-ws-8.7.1.redhat-4.jar" />
+        <resource-root path="connector-ws-8.7.1.redhat-6.jar" />
         <resource-root path="." />
         <!-- Insert resources here -->
     </resources>
 
     <dependencies>
+        <module name="sun.jdk" />
         <module name="javax.api" />
         <module name="javax.resource.api" />
         <module name="org.jboss.teiid.common-core" />
@@ -45,5 +46,6 @@
                 <include path="META-INF" />
             </exports>
         </module>
+        <module name="org.apache.ws.security"/>        
     </dependencies>
 </module>

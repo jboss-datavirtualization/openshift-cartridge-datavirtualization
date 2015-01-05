@@ -28,7 +28,7 @@
     </properties>
 
     <resources>
-        <resource-root path="hornetq-ra-2.3.20.Final-redhat-1.jar"/>
+        <resource-root path="hornetq-ra-2.3.21.Final-redhat-1.jar"/>
         <!-- Insert resources here -->
     </resources>
 
