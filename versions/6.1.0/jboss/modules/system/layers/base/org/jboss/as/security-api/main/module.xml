@@ -25,7 +25,7 @@
 <module xmlns="urn:jboss:module:1.1" name="org.jboss.as.security-api">
 
     <resources>
-        <resource-root path="jboss-as-security-api-7.4.0.Final-redhat-19.jar"/>
+        <resource-root path="jboss-as-security-api-7.4.2.Final-redhat-2.jar"/>
         <!-- Insert resources here -->
     </resources>
 

@@ -3,7 +3,7 @@
     <parent>
         <artifactId>connectors</artifactId>
         <groupId>org.jboss.teiid</groupId>
-        <version>8.7.1.redhat-4</version>
+        <version>8.7.1.redhat-6</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>connector-infinispan-dsl</artifactId>
@@ -106,7 +106,6 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
-                <version>2.3.7</version>
                 <executions>
                     <execution>
                         <id>bundle</id>
@@ -123,7 +122,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-rar-plugin</artifactId>
-                <version>2.2</version>
                 <executions>
                     <execution>
                         <id>build_rar</id>
@@ -132,7 +130,7 @@
                             <goal>rar</goal>
                         </goals>
                         <configuration>
-                            <finalName>connector-infinispan-dsl-8.7.1.redhat-4</finalName>
+                            <finalName>connector-infinispan-dsl-8.7.1.redhat-6</finalName>
                         </configuration>
                     </execution>
                 </executions>
@@ -141,14 +139,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.7</version>
                 <executions>
                     <execution>
                         <id>prepare</id>
                         <phase>package</phase>
                         <configuration>
                             <tasks>
-                                <unzip src="/maven/build/teiid/connectors/connector-infinispan-dsl/target/connector-infinispan-dsl-8.7.1.redhat-4.rar" dest="/maven/build/teiid/connectors/connector-infinispan-dsl/target/rar-unpack"></unzip>
+                                <unzip src="/maven/build/teiid/connectors/connector-infinispan-dsl/target/connector-infinispan-dsl-8.7.1.redhat-6.rar" dest="/maven/build/teiid/connectors/connector-infinispan-dsl/target/rar-unpack"></unzip>
                             </tasks>
                         </configuration>
                         <goals>
@@ -170,14 +167,13 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>/maven/build/teiid/connectors/connector-infinispan-dsl/target/connector-infinispan-dsl-8.7.1.redhat-4.rar</file>
+                                    <file>/maven/build/teiid/connectors/connector-infinispan-dsl/target/connector-infinispan-dsl-8.7.1.redhat-6.rar</file>
                                	 	<type>rar</type>
                                 </artifact>
                             </artifacts>
                         </configuration>
                     </execution>
                 </executions>
-                <version>1.7</version>
             </plugin>
             
             <plugin>
@@ -188,7 +184,6 @@
                         <descriptor>kits/embedded-dist.xml</descriptor>
                     </descriptors>
                 </configuration>
-                <version>2.4</version>
                 <executions>
                     <execution>
                         <id>create-assemblies</id>

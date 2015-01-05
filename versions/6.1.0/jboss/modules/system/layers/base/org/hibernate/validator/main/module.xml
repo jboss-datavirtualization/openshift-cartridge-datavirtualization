@@ -24,7 +24,7 @@
 
 <module xmlns="urn:jboss:module:1.1" name="org.hibernate.validator">
   <resources>
-    <resource-root path="hibernate-validator-4.3.1.Final-redhat-1.jar"/>
+    <resource-root path="hibernate-validator-4.3.2.Final-redhat-1.jar"/>
         <!-- Insert resources here -->
   </resources>
 

@@ -28,7 +28,7 @@
     </dependencies>
 
     <resources>
-        <resource-root path="modeshape-jdbc-local-3.8.1.GA-redhat-4.jar" />
+        <resource-root path="modeshape-jdbc-local-3.8.2.GA-redhat-1.jar" />
         <!-- Insert resources here -->
     </resources>
 </module>

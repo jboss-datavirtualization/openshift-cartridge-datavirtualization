@@ -36,7 +36,7 @@
     </dependencies>
 
     <resources>
-        <resource-root path="jsf-impl-2.1.28.redhat-3.jar"/>
+        <resource-root path="jsf-impl-2.1.28.redhat-6.jar"/>
         <!-- Insert resources here -->
     </resources>
 </module>

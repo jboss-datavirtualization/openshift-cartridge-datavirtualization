@@ -25,8 +25,8 @@
 <module xmlns="urn:jboss:module:1.1" name="org.picketlink.idm.schema">
 
     <resources>
-        <resource-root path="picketlink-idm-simple-schema-2.5.3.SP10-redhat-1.jar"/>
-        <resource-root path="picketlink-idm-simple-schema-2.5.3.SP10-redhat-1.jar"/>
+        <resource-root path="picketlink-idm-simple-schema-2.5.3.SP12-redhat-1.jar"/>
+        <resource-root path="picketlink-idm-simple-schema-2.5.3.SP12-redhat-1.jar"/>
         <!-- Insert resources here -->
     </resources>
 

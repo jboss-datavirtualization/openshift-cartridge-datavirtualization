@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module xmlns="urn:jboss:module:1.0" name="org.jboss.teiid.translator.google.api">
     <resources>
-        <resource-root path="google-api-8.7.1.redhat-4.jar" />
+        <resource-root path="google-api-8.7.1.redhat-6.jar" />
         <resource-root path="gdata-core-1.0.jar" />
         <resource-root path="gdata-spreadsheet-3.0.jar" />
     </resources>

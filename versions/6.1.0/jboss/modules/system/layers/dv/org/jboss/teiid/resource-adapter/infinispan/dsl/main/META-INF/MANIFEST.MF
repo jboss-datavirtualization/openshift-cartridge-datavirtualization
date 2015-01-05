@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: mockbuild
-Build-Jdk: 1.7.0_71
 Dependencies: org.jboss.teiid.common-core,org.jboss.teiid.api,javax.ap
  i,org.jboss.teiid.translator.infinispan.dsl,org.infinispan export,org
  .infinispan.client.hotrod,org.infinispan.cachestore.remote,org.jboss.
  as.clustering.infinispan,org.jboss.modules	
+Built-By: mockbuild
+Build-Jdk: 1.7.0_71
+Created-By: Apache Maven 3.0.5
+Archiver-Version: Plexus Archiver
 

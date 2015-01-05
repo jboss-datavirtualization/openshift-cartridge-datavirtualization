@@ -1,7 +1,8 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
+Dependencies: org.jboss.teiid.common-core,org.jboss.teiid.api,javax.ap
+ i
 Built-By: mockbuild
 Build-Jdk: 1.7.0_71
-Dependencies: org.jboss.teiid.common-core,org.jboss.teiid.api,javax.api
+Created-By: Apache Maven 3.0.5
+Archiver-Version: Plexus Archiver
 

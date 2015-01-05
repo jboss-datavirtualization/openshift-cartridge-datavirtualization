@@ -25,11 +25,11 @@
 <module xmlns="urn:jboss:module:1.1" name="org.jboss.security.negotiation">
 
     <resources>
-        <resource-root path="jboss-negotiation-common-2.3.3.Final-redhat-1.jar"/>
-        <resource-root path="jboss-negotiation-extras-2.3.3.Final-redhat-1.jar"/>
-        <resource-root path="jboss-negotiation-net-2.3.3.Final-redhat-1.jar"/>
-        <resource-root path="jboss-negotiation-ntlm-2.3.3.Final-redhat-1.jar"/>
-        <resource-root path="jboss-negotiation-spnego-2.3.3.Final-redhat-1.jar"/>
+        <resource-root path="jboss-negotiation-common-2.3.4.Final-redhat-1.jar"/>
+        <resource-root path="jboss-negotiation-extras-2.3.4.Final-redhat-1.jar"/>
+        <resource-root path="jboss-negotiation-net-2.3.4.Final-redhat-1.jar"/>
+        <resource-root path="jboss-negotiation-ntlm-2.3.4.Final-redhat-1.jar"/>
+        <resource-root path="jboss-negotiation-spnego-2.3.4.Final-redhat-1.jar"/>
         <!-- Insert resources here -->
     </resources>
 

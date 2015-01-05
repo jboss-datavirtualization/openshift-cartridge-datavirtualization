@@ -22,7 +22,7 @@
   -->
 <module xmlns="urn:jboss:module:1.2" name="org.modeshape.connector.jdbc.metadata">
     <resources>
-        <resource-root path="modeshape-connector-jdbc-metadata-3.8.1.GA-redhat-4.jar" />
+        <resource-root path="modeshape-connector-jdbc-metadata-3.8.2.GA-redhat-1.jar" />
         <resource-root path="c3p0-0.9.2-pre5.jar" />
     </resources>
 
