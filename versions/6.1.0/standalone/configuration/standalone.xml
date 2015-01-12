@@ -99,25 +99,23 @@
 		<subsystem xmlns="urn:jboss:domain:configadmin:1.0" />
 		<subsystem xmlns="urn:jboss:domain:datasources:1.2">
 			<datasources>
-				<datasource jndi-name="java:jboss/datasources/ExampleDS"
-					enabled="true" use-java-context="true" pool-name="H2DS">
-					<connection-url>jdbc:h2:${jboss.server.data.dir}/test;DB_CLOSE_DELAY=-1
-					</connection-url>
+				<datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
+                                        <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
 					<driver>h2</driver>
 					<security>
 						<user-name>sa</user-name>
 						<password>sa</password>
 					</security>
 				</datasource>
-                                <datasource jndi-name="java:jboss/datasources/DashboardDS" pool-name="DashboardDS" use-java-context="true">
-                                    <connection-url>jdbc:h2:${jboss.server.data.dir}/teiid-dashboard-ds;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</connection-url>
+                                <datasource jndi-name="java:jboss/datasources/DashboardDS" pool-name="DashboardDS" enabled="true" use-java-context="true">
+                                    <connection-url>jdbc:h2:file:${jboss.server.data.dir}/teiid-dashboard/teiid-dashboard-ds;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</connection-url>
                                     <driver>h2</driver>
                                     <security>
                                         <user-name>sa</user-name>
                                         <password>sa</password>
                                     </security>
                                 </datasource>
-                                <datasource jndi-name="java:/datasources/ModeShapeDS" pool-name="ModeShapeDS" use-java-context="true">
+                                <datasource jndi-name="java:/datasources/ModeShapeDS" pool-name="ModeShapeDS" enabled="true" use-java-context="true">
                                     <connection-url>jdbc:jcr:jndi:jcr?repositoryName=dv</connection-url>
                                     <connection-property name="teiidsupport">true</connection-property>
                                     <driver>modeshape</driver>
