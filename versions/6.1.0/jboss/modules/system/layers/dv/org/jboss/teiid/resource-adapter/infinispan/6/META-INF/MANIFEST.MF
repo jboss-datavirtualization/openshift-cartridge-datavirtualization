@@ -4,7 +4,7 @@ Dependencies: org.jboss.teiid.common-core,org.jboss.teiid.api,javax.ap
  pan.client.hotrod,org.infinispan.cachestore.remote,org.jboss.as.clust
  ering.infinispan,org.jboss.modules	
 Built-By: mockbuild
-Build-Jdk: 1.7.0_71
+Build-Jdk: 1.7.0_75
 Created-By: Apache Maven 3.0.5
 Archiver-Version: Plexus Archiver
 

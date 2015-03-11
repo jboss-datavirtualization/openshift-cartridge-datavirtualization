@@ -24,8 +24,8 @@
 
 <module xmlns="urn:jboss:module:1.1" name="org.picketbox">
     <resources>
-        <resource-root path="picketbox-4.0.19.SP8-redhat-1.jar"/>
-        <resource-root path="picketbox-infinispan-4.0.19.SP8-redhat-1.jar"/>
+        <resource-root path="picketbox-4.0.19.SP10-redhat-1.jar"/>
+        <resource-root path="picketbox-infinispan-4.0.19.SP10-redhat-1.jar"/>
         <resource-root path="picketbox-commons-1.0.0.final-redhat-2.jar"/>
         <!-- Insert resources here -->
     </resources>

@@ -22,7 +22,7 @@
   -->
 <module xmlns="urn:jboss:module:1.2" name="org.modeshape.sequencer.wsdl">
     <resources>
-        <resource-root path="modeshape-sequencer-wsdl-3.8.2.GA-redhat-1.jar" />
+        <resource-root path="modeshape-sequencer-wsdl-3.8.2.GA-redhat-3.jar" />
         <resource-root path="wsdl4j-1.6.3.redhat-1.jar" />
     </resources>
 

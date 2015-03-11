@@ -29,7 +29,7 @@
     </properties>
 
     <resources>
-        <resource-root path="weld-core-1.1.25.Final-redhat-2.jar"/>
+        <resource-root path="weld-core-1.1.28.Final-redhat-1.jar"/>
         <!-- Insert resources here -->
     </resources>
 

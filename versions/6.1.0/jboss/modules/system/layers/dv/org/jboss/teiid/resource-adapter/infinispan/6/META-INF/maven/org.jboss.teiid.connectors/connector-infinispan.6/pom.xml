@@ -3,13 +3,18 @@
 	<parent>
 		<artifactId>connectors</artifactId>
 		<groupId>org.jboss.teiid</groupId>
-		<version>8.7.1.redhat-6</version>
+		<version>8.7.1.redhat-8</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>connector-infinispan.6</artifactId>
 	<groupId>org.jboss.teiid.connectors</groupId>
 	<name>Infinispan Connector 6</name>
 	<description>This connector creates the connection to the Infinispan Cache</description>
+	
+	<properties>
+        <!-- slot defined in the module  -->
+        <jdg.slot>jdg-6.4</jdg.slot>
+    </properties>	
 
 	<dependencyManagement>
 		<dependencies>
@@ -60,12 +65,6 @@
 		<dependency>
 			<groupId>javax.resource</groupId>
 			<artifactId>connector-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-search</artifactId>
 			<scope>provided</scope>
 		</dependency>
 

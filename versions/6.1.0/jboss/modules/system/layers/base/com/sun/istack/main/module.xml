@@ -28,8 +28,8 @@
     </properties>
 
     <resources>
-        <resource-root path="istack-commons-runtime-2.6.1-redhat-2.jar"/>
-        <resource-root path="istack-commons-tools-2.6.1-redhat-2.jar"/>
+        <resource-root path="istack-commons-runtime-2.6.1.redhat-3.jar"/>
+        <resource-root path="istack-commons-tools-2.6.1.redhat-3.jar"/>
         <!-- Insert resources here -->
     </resources>
 

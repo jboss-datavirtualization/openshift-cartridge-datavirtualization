@@ -23,9 +23,9 @@
   -->
 <module xmlns="urn:jboss:module:1.2" name="org.modeshape">
     <resources>
-        <resource-root path="modeshape-jcr-3.8.2.GA-redhat-1.jar"/>
-        <resource-root path="modeshape-jbossas-subsystem-3.8.2.GA-redhat-1.jar"/>
-        <resource-root path="modeshape-schematic-3.8.2.GA-redhat-1.jar"/>
+        <resource-root path="modeshape-jcr-3.8.2.GA-redhat-3.jar"/>
+        <resource-root path="modeshape-jbossas-subsystem-3.8.2.GA-redhat-3.jar"/>
+        <resource-root path="modeshape-schematic-3.8.2.GA-redhat-3.jar"/>
         <resource-root path="res"/>
         <resource-root path="deployments"/>
     </resources>

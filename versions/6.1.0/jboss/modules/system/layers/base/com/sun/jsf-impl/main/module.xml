@@ -33,10 +33,12 @@
         <module name="javax.servlet.jstl.api"/>
         <module name="org.apache.xerces" services="import"/>
         <module name="org.apache.xalan" services="import"/>
+        <module name="org.javassist"/>
+        <module name="org.jboss.weld.core"/>
     </dependencies>
 
     <resources>
-        <resource-root path="jsf-impl-2.1.28.redhat-6.jar"/>
+        <resource-root path="jsf-impl-2.1.28.redhat-7.jar"/>
         <!-- Insert resources here -->
     </resources>
 </module>

@@ -28,7 +28,7 @@
     </properties>
 
     <resources>
-        <resource-root path="hal-console-2.2.11.Final-redhat-dv-2-resources.jar"/>
+        <resource-root path="hal-console-2.2.11.Final-redhat-dv-4-resources.jar"/>
     </resources>
 
     <dependencies>
