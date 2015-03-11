@@ -22,7 +22,7 @@
   -->
 <module xmlns="urn:jboss:module:1.2" name="org.modeshape.extractor.tika">
     <resources>
-        <resource-root path="modeshape-extractor-tika-3.8.2.GA-redhat-1.jar" />
+        <resource-root path="modeshape-extractor-tika-3.8.2.GA-redhat-3.jar" />
     </resources>
 
     <dependencies>

@@ -28,7 +28,7 @@
     </properties>
 
     <resources>
-        <resource-root path="jboss-as-modcluster-7.4.2.Final-redhat-2.jar"/>
+        <resource-root path="jboss-as-modcluster-7.4.3.Final-redhat-2.jar"/>
         <resource-root path="mod_cluster-container-spi-1.2.9.Final-redhat-1.jar"/>
         <resource-root path="mod_cluster-core-1.2.9.Final-redhat-1.jar"/>
         <resource-root path="mod_cluster-container-catalina-1.2.9.Final-redhat-1.jar"/>

@@ -25,7 +25,7 @@
 <module xmlns="urn:jboss:module:1.1" name="org.picketlink.idm">
 
     <resources>
-        <resource-root path="picketlink-idm-impl-2.5.3.SP12-redhat-1.jar"/>
+        <resource-root path="picketlink-idm-impl-2.5.3.SP16-redhat-1.jar"/>
         <!-- Insert resources here -->
     </resources>
 

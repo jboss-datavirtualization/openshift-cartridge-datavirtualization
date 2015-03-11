@@ -28,7 +28,7 @@
     </properties>
 
     <resources>
-        <resource-root path="jboss-marshalling-river-1.4.8.Final-redhat-1.jar"/>
+        <resource-root path="jboss-marshalling-river-1.4.10.Final-redhat-1.jar"/>
         <!-- Insert resources here -->
     </resources>
 

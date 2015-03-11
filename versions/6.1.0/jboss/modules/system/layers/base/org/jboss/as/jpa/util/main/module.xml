@@ -28,7 +28,7 @@
     </properties>
 
     <resources>
-        <resource-root path="jboss-as-jpa-util-7.4.2.Final-redhat-2.jar"/>
+        <resource-root path="jboss-as-jpa-util-7.4.3.Final-redhat-2.jar"/>
         <!-- Insert resources here -->
     </resources>
 

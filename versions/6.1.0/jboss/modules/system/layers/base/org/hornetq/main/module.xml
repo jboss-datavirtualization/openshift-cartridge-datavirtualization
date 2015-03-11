@@ -25,12 +25,12 @@
 <module xmlns="urn:jboss:module:1.1" name="org.hornetq">
     <resources>
         <resource-root path="lib"/>
-        <resource-root path="hornetq-core-client-2.3.21.Final-redhat-1.jar"/>
-        <resource-root path="hornetq-server-2.3.21.Final-redhat-1.jar"/>
-        <resource-root path="hornetq-commons-2.3.21.Final-redhat-1.jar"/>
-        <resource-root path="hornetq-journal-2.3.21.Final-redhat-1.jar"/>
-        <resource-root path="hornetq-jms-client-2.3.21.Final-redhat-1.jar"/>
-        <resource-root path="hornetq-jms-server-2.3.21.Final-redhat-1.jar"/>
+        <resource-root path="hornetq-core-client-2.3.21.2.Final-redhat-1.jar"/>
+        <resource-root path="hornetq-server-2.3.21.2.Final-redhat-1.jar"/>
+        <resource-root path="hornetq-commons-2.3.21.2.Final-redhat-1.jar"/>
+        <resource-root path="hornetq-journal-2.3.21.2.Final-redhat-1.jar"/>
+        <resource-root path="hornetq-jms-client-2.3.21.2.Final-redhat-1.jar"/>
+        <resource-root path="hornetq-jms-server-2.3.21.2.Final-redhat-1.jar"/>
         <!-- Insert resources here -->
     </resources>
 

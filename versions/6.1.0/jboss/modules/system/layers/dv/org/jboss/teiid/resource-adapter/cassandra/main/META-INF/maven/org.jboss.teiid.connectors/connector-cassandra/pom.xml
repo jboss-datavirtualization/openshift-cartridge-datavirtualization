@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.jboss.teiid</groupId>
 		<artifactId>connectors</artifactId>
-		<version>8.7.1.redhat-6</version>
+		<version>8.7.1.redhat-8</version>
 	</parent>
     
 	<groupId>org.jboss.teiid.connectors</groupId>
