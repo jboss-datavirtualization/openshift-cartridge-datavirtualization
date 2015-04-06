@@ -19,7 +19,7 @@ mv ${OPENSHIFT_DV_DIR}/versions/${version}/jboss/modules ${OPENSHIFT_DV_DIR}/jbo
 mv ${OPENSHIFT_DV_DIR}/versions/${version}/jboss/jboss-modules.jar ${OPENSHIFT_DV_DIR}/jboss
 cp ${OPENSHIFT_DV_DIR}/standalone/configuration/standalone.xml ${OPENSHIFT_DV_DIR}/template/.openshift/config
 cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/teiid-dashboard-builder.war ${OPENSHIFT_DV_DIR}/standalone/deployments/teiid-dashboard-builder.war
-cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/PREVIEW-DataVirtWebUI-11Mar2015.war ${OPENSHIFT_DV_DIR}/standalone/deployments/PREVIEW-DataVirtWebUI-11Mar2015.war
+cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/PREVIEW-DataVirtWebUI-03Apr2015.war ${OPENSHIFT_DV_DIR}/standalone/deployments/PREVIEW-DataVirtWebUI-03Apr2015.war
 cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/ModeShape.vdb ${OPENSHIFT_DV_DIR}/standalone/deployments/ModeShape.vdb
 cp ${OPENSHIFT_DV_DIR}/versions/${version}/standalone/deployments/ModeShape.vdb.dodeploy ${OPENSHIFT_DV_DIR}/standalone/deployments/ModeShape.vdb.dodeploy
 
