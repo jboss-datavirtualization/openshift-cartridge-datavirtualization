@@ -42,6 +42,12 @@ A teiid user is generated with the installation.  It is granted the user, odata 
 
 Consult the [Teiid Documentation](http://www.jboss.org/teiid/docs) for more information.
 
+### WebUI access
+After install, you can access the Data Virtualization WebUI at
+* http://[MYAPP]-[MYDOMAIN].rhcloud.com/dv-ui
+
+Default login credentials are ----- admin / admin
+
 ### Modeshape Content Repository
 You can access Modeshape at
 
