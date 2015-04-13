@@ -46,9 +46,7 @@ Consult the [Teiid Documentation](http://www.jboss.org/teiid/docs) for more info
 After install, you can access the Data Virtualization WebUI at
 * http://[MYAPP]-[MYDOMAIN].rhcloud.com/dv-ui
 
-Default login credentials are 
-username: admin 
-password: admin
+Default login credentials are ----- admin / admin
 
 ### Modeshape Content Repository
 You can access Modeshape at
