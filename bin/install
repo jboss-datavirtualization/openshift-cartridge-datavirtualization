@@ -35,8 +35,6 @@ pushd $OPENSHIFT_DV_DIR > /dev/null
   ln -s ${JBOSS_HOME}/modules
 popd 1> /dev/null
 
-# Disable Openshift management
-set_env_var DISABLE_OPENSHIFT_MANAGED_SERVER_CONFIG true ~/.env/user_vars
 
 # Set usernames, generate passwords and create env variables
 echo 'Generating username and password'
@@ -60,6 +58,8 @@ echo "$msuser_username" > $OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_MSUSER_USERNAME
 echo "$msuser_password" > $OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_MSUSER_PASSWORD
 echo "$msadmin_username" > $OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_MSADMIN_USERNAME
 echo "$msadmin_password" > $OPENSHIFT_DV_DIR/env/OPENSHIFT_DV_MSADMIN_PASSWORD
+# Disable Openshift management
+echo "true" > $OPENSHIFT_DV_DIR/env/DISABLE_OPENSHIFT_MANAGED_SERVER_CONFIG
 
 # Create the teiid-security-users.properties file
 # ${OPENSHIFT_DV_DIR}/standalone/deployments
